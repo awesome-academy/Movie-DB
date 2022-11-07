@@ -9,10 +9,10 @@ import Foundation
 import CoreData
 
 final class PersistentContainer {
-    
+
     static let shared =  PersistentContainer()
     private var persistentContainer: NSPersistentContainer?
-    
+
     private init() {
         persistentContainer = NSPersistentContainer(name: "Model")
         persistentContainer?.loadPersistentStores(completionHandler: { (_, error) in
@@ -21,10 +21,10 @@ final class PersistentContainer {
             }
         })
     }
-    
-    func saveContext () {
+
+    func saveContext() {
         let context = persistentContainer?.viewContext
-        if ((context?.hasChanges) != nil) {
+        if (context?.hasChanges != nil) {
             do {
                 try context?.save()
             } catch {

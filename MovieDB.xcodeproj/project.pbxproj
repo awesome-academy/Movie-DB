@@ -11,9 +11,20 @@
 		5D2C44F82913634F009157C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D2C44F62913634F009157C6 /* LaunchScreen.storyboard */; };
 		5D2C450C2913A1AA009157C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D2C450A2913A1AA009157C6 /* Assets.xcassets */; };
 		5D2C450D2913A1AA009157C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2C450B2913A1AA009157C6 /* AppDelegate.swift */; };
-		5D2C45162913A1AF009157C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2C450F2913A1AF009157C6 /* ViewController.swift */; };
 		5D2C45172913A1AF009157C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D2C45112913A1AF009157C6 /* Main.storyboard */; };
 		5D2C451B2913A780009157C6 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2C451A2913A77F009157C6 /* CoreDataManager.swift */; };
+		5DA5B6EE2913C7B100AB2345 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B6EC2913C7B100AB2345 /* HomeViewController.swift */; };
+		5DA5B6EF2913C7B100AB2345 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA5B6ED2913C7B100AB2345 /* HomeViewController.xib */; };
+		5DA5B6F52913C7FD00AB2345 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B6F32913C7FD00AB2345 /* FavoriteViewController.swift */; };
+		5DA5B6F62913C7FD00AB2345 /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA5B6F42913C7FD00AB2345 /* FavoriteViewController.xib */; };
+		5DA5B6F92913C80C00AB2345 /* ComingSoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B6F72913C80C00AB2345 /* ComingSoonViewController.swift */; };
+		5DA5B6FA2913C80C00AB2345 /* ComingSoonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA5B6F82913C80C00AB2345 /* ComingSoonViewController.xib */; };
+		5DA5B6FD2913C81B00AB2345 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B6FB2913C81B00AB2345 /* CategoryViewController.swift */; };
+		5DA5B6FE2913C81B00AB2345 /* CategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA5B6FC2913C81B00AB2345 /* CategoryViewController.xib */; };
+		5DA5B7012913C8A000AB2345 /* TabbarItemEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B7002913C8A000AB2345 /* TabbarItemEnum.swift */; };
+		5DA5B7042913CC0F00AB2345 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B7032913CC0F00AB2345 /* TabbarViewController.swift */; };
+		5DA5B7072914A34800AB2345 /* AppBarUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B7062914A34800AB2345 /* AppBarUIView.swift */; };
+		5DA5B7092914A36200AB2345 /* AppBarUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA5B7082914A36200AB2345 /* AppBarUIView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,9 +34,20 @@
 		5D2C44F92913634F009157C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D2C450A2913A1AA009157C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D2C450B2913A1AA009157C6 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5D2C450F2913A1AF009157C6 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5D2C45122913A1AF009157C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5D2C451A2913A77F009157C6 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		5DA5B6EC2913C7B100AB2345 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5DA5B6ED2913C7B100AB2345 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		5DA5B6F32913C7FD00AB2345 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		5DA5B6F42913C7FD00AB2345 /* FavoriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
+		5DA5B6F72913C80C00AB2345 /* ComingSoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingSoonViewController.swift; sourceTree = "<group>"; };
+		5DA5B6F82913C80C00AB2345 /* ComingSoonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComingSoonViewController.xib; sourceTree = "<group>"; };
+		5DA5B6FB2913C81B00AB2345 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		5DA5B6FC2913C81B00AB2345 /* CategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryViewController.xib; sourceTree = "<group>"; };
+		5DA5B7002913C8A000AB2345 /* TabbarItemEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarItemEnum.swift; sourceTree = "<group>"; };
+		5DA5B7032913CC0F00AB2345 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
+		5DA5B7062914A34800AB2345 /* AppBarUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBarUIView.swift; sourceTree = "<group>"; };
+		5DA5B7082914A36200AB2345 /* AppBarUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppBarUIView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +87,6 @@
 				5D2C45092913A1AA009157C6 /* Resource */,
 				5D2C45192913A758009157C6 /* Manager */,
 				5D2C45082913A19E009157C6 /* Model */,
-				5D2C44F62913634F009157C6 /* LaunchScreen.storyboard */,
 				5D2C44F92913634F009157C6 /* Info.plist */,
 				5D2C44F12913634E009157C6 /* MovieDB.xcdatamodeld */,
 			);
@@ -75,6 +96,7 @@
 		5D2C45082913A19E009157C6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5DA5B6FF2913C88400AB2345 /* Enum */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -91,7 +113,11 @@
 		5D2C450E2913A1AF009157C6 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				5D2C450F2913A1AF009157C6 /* ViewController.swift */,
+				5DA5B7022913CBC400AB2345 /* TabbarVC */,
+				5DA5B6F22913C7C900AB2345 /* FavoriteVC */,
+				5DA5B6F12913C7BF00AB2345 /* ComingSoonVC */,
+				5DA5B6F02913C7B600AB2345 /* CategoryVC */,
+				5D2C45202913C68A009157C6 /* HomeVC */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -99,7 +125,9 @@
 		5D2C45102913A1AF009157C6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5DA5B7052914A2F800AB2345 /* AppBarItem */,
 				5D2C45112913A1AF009157C6 /* Main.storyboard */,
+				5D2C44F62913634F009157C6 /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -124,6 +152,67 @@
 				5D2C451A2913A77F009157C6 /* CoreDataManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		5D2C45202913C68A009157C6 /* HomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				5DA5B6EC2913C7B100AB2345 /* HomeViewController.swift */,
+				5DA5B6ED2913C7B100AB2345 /* HomeViewController.xib */,
+			);
+			path = HomeVC;
+			sourceTree = "<group>";
+		};
+		5DA5B6F02913C7B600AB2345 /* CategoryVC */ = {
+			isa = PBXGroup;
+			children = (
+				5DA5B6FB2913C81B00AB2345 /* CategoryViewController.swift */,
+				5DA5B6FC2913C81B00AB2345 /* CategoryViewController.xib */,
+			);
+			path = CategoryVC;
+			sourceTree = "<group>";
+		};
+		5DA5B6F12913C7BF00AB2345 /* ComingSoonVC */ = {
+			isa = PBXGroup;
+			children = (
+				5DA5B6F72913C80C00AB2345 /* ComingSoonViewController.swift */,
+				5DA5B6F82913C80C00AB2345 /* ComingSoonViewController.xib */,
+			);
+			path = ComingSoonVC;
+			sourceTree = "<group>";
+		};
+		5DA5B6F22913C7C900AB2345 /* FavoriteVC */ = {
+			isa = PBXGroup;
+			children = (
+				5DA5B6F32913C7FD00AB2345 /* FavoriteViewController.swift */,
+				5DA5B6F42913C7FD00AB2345 /* FavoriteViewController.xib */,
+			);
+			path = FavoriteVC;
+			sourceTree = "<group>";
+		};
+		5DA5B6FF2913C88400AB2345 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				5DA5B7002913C8A000AB2345 /* TabbarItemEnum.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		5DA5B7022913CBC400AB2345 /* TabbarVC */ = {
+			isa = PBXGroup;
+			children = (
+				5DA5B7032913CC0F00AB2345 /* TabbarViewController.swift */,
+			);
+			path = TabbarVC;
+			sourceTree = "<group>";
+		};
+		5DA5B7052914A2F800AB2345 /* AppBarItem */ = {
+			isa = PBXGroup;
+			children = (
+				5DA5B7062914A34800AB2345 /* AppBarUIView.swift */,
+				5DA5B7082914A36200AB2345 /* AppBarUIView.xib */,
+			);
+			path = AppBarItem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,9 +274,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DA5B7092914A36200AB2345 /* AppBarUIView.xib in Resources */,
+				5DA5B6FE2913C81B00AB2345 /* CategoryViewController.xib in Resources */,
 				5D2C44F82913634F009157C6 /* LaunchScreen.storyboard in Resources */,
 				5D2C45172913A1AF009157C6 /* Main.storyboard in Resources */,
+				5DA5B6FA2913C80C00AB2345 /* ComingSoonViewController.xib in Resources */,
 				5D2C450C2913A1AA009157C6 /* Assets.xcassets in Resources */,
+				5DA5B6F62913C7FD00AB2345 /* FavoriteViewController.xib in Resources */,
+				5DA5B6EF2913C7B100AB2345 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,10 +313,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D2C45162913A1AF009157C6 /* ViewController.swift in Sources */,
 				5D2C450D2913A1AA009157C6 /* AppDelegate.swift in Sources */,
 				5D2C44F32913634E009157C6 /* MovieDB.xcdatamodeld in Sources */,
+				5DA5B6FD2913C81B00AB2345 /* CategoryViewController.swift in Sources */,
 				5D2C451B2913A780009157C6 /* CoreDataManager.swift in Sources */,
+				5DA5B6EE2913C7B100AB2345 /* HomeViewController.swift in Sources */,
+				5DA5B6F92913C80C00AB2345 /* ComingSoonViewController.swift in Sources */,
+				5DA5B7072914A34800AB2345 /* AppBarUIView.swift in Sources */,
+				5DA5B6F52913C7FD00AB2345 /* FavoriteViewController.swift in Sources */,
+				5DA5B7012913C8A000AB2345 /* TabbarItemEnum.swift in Sources */,
+				5DA5B7042913CC0F00AB2345 /* TabbarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +477,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -405,6 +506,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
