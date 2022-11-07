@@ -25,6 +25,15 @@
 		5DA5B7042913CC0F00AB2345 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B7032913CC0F00AB2345 /* TabbarViewController.swift */; };
 		5DA5B7072914A34800AB2345 /* AppBarUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B7062914A34800AB2345 /* AppBarUIView.swift */; };
 		5DA5B7092914A36200AB2345 /* AppBarUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA5B7082914A36200AB2345 /* AppBarUIView.xib */; };
+		5DA5B72E2918B35A00AB2345 /* DetailInfoFilm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B72D2918B35A00AB2345 /* DetailInfoFilm.swift */; };
+		5DA5B7302918B89500AB2345 /* GeneralInfoFilm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B72F2918B89500AB2345 /* GeneralInfoFilm.swift */; };
+		5DA5B7332918B98C00AB2345 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B7322918B98C00AB2345 /* Actor.swift */; };
+		5DA5B7352918BC5B00AB2345 /* VideoTrailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B7342918BC5B00AB2345 /* VideoTrailer.swift */; };
+		5DA5B7382918BD3300AB2345 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B7372918BD3200AB2345 /* APICaller.swift */; };
+		5DA5B73A2918BE8B00AB2345 /* RequestErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B7392918BE8B00AB2345 /* RequestErrorEnum.swift */; };
+		5DA5B73C2918C0C000AB2345 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B73B2918C0C000AB2345 /* Network.swift */; };
+		5DA5B73E2918C1E700AB2345 /* CategoryPathEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B73D2918C1E700AB2345 /* CategoryPathEnum.swift */; };
+		5DA5B7432918E24000AB2345 /* TMDBInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DA5B7422918E24000AB2345 /* TMDBInfo.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +57,15 @@
 		5DA5B7032913CC0F00AB2345 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		5DA5B7062914A34800AB2345 /* AppBarUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBarUIView.swift; sourceTree = "<group>"; };
 		5DA5B7082914A36200AB2345 /* AppBarUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppBarUIView.xib; sourceTree = "<group>"; };
+		5DA5B72D2918B35A00AB2345 /* DetailInfoFilm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoFilm.swift; sourceTree = "<group>"; };
+		5DA5B72F2918B89500AB2345 /* GeneralInfoFilm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoFilm.swift; sourceTree = "<group>"; };
+		5DA5B7322918B98C00AB2345 /* Actor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
+		5DA5B7342918BC5B00AB2345 /* VideoTrailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTrailer.swift; sourceTree = "<group>"; };
+		5DA5B7372918BD3200AB2345 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		5DA5B7392918BE8B00AB2345 /* RequestErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestErrorEnum.swift; sourceTree = "<group>"; };
+		5DA5B73B2918C0C000AB2345 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		5DA5B73D2918C1E700AB2345 /* CategoryPathEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPathEnum.swift; sourceTree = "<group>"; };
+		5DA5B7422918E24000AB2345 /* TMDBInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TMDBInfo.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +107,7 @@
 				5D2C45082913A19E009157C6 /* Model */,
 				5D2C44F92913634F009157C6 /* Info.plist */,
 				5D2C44F12913634E009157C6 /* MovieDB.xcdatamodeld */,
+				5DA5B7422918E24000AB2345 /* TMDBInfo.plist */,
 			);
 			path = MovieDB;
 			sourceTree = "<group>";
@@ -96,6 +115,8 @@
 		5D2C45082913A19E009157C6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5DA5B7402918D3EE00AB2345 /* FilmInfo */,
+				5DA5B7362918BD2200AB2345 /* Networking */,
 				5DA5B6FF2913C88400AB2345 /* Enum */,
 			);
 			path = Model;
@@ -193,6 +214,7 @@
 		5DA5B6FF2913C88400AB2345 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				5DA5B73F2918C4E700AB2345 /* APIEnum */,
 				5DA5B7002913C8A000AB2345 /* TabbarItemEnum.swift */,
 			);
 			path = Enum;
@@ -215,6 +237,35 @@
 			path = AppBarItem;
 			sourceTree = "<group>";
 		};
+		5DA5B7362918BD2200AB2345 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				5DA5B7372918BD3200AB2345 /* APICaller.swift */,
+				5DA5B73B2918C0C000AB2345 /* Network.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		5DA5B73F2918C4E700AB2345 /* APIEnum */ = {
+			isa = PBXGroup;
+			children = (
+				5DA5B73D2918C1E700AB2345 /* CategoryPathEnum.swift */,
+				5DA5B7392918BE8B00AB2345 /* RequestErrorEnum.swift */,
+			);
+			path = APIEnum;
+			sourceTree = "<group>";
+		};
+		5DA5B7402918D3EE00AB2345 /* FilmInfo */ = {
+			isa = PBXGroup;
+			children = (
+				5DA5B72F2918B89500AB2345 /* GeneralInfoFilm.swift */,
+				5DA5B72D2918B35A00AB2345 /* DetailInfoFilm.swift */,
+				5DA5B7322918B98C00AB2345 /* Actor.swift */,
+				5DA5B7342918BC5B00AB2345 /* VideoTrailer.swift */,
+			);
+			path = FilmInfo;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -226,6 +277,7 @@
 				5D2C44E22913634E009157C6 /* Frameworks */,
 				5D2C44E32913634E009157C6 /* Resources */,
 				5D2C44FF29137B98009157C6 /* ShellScript */,
+				5DA5B7442918E4A900AB2345 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -280,6 +332,7 @@
 				5D2C45172913A1AF009157C6 /* Main.storyboard in Resources */,
 				5DA5B6FA2913C80C00AB2345 /* ComingSoonViewController.xib in Resources */,
 				5D2C450C2913A1AA009157C6 /* Assets.xcassets in Resources */,
+				5DA5B7432918E24000AB2345 /* TMDBInfo.plist in Resources */,
 				5DA5B6F62913C7FD00AB2345 /* FavoriteViewController.xib in Resources */,
 				5DA5B6EF2913C7B100AB2345 /* HomeViewController.xib in Resources */,
 			);
@@ -306,6 +359,23 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		5DA5B7442918E4A900AB2345 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nCONFIG_FILE_BASE_NAME=\"TMDBInfo\"\n\nCONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}.plist\nSAMPLE_CONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}-Sample.plist\n\nCONFIG_FILE_PATH=$SRCROOT/$PRODUCT_NAME/$CONFIG_FILE_NAME\nSAMPLE_CONFIG_FILE_PATH=$SRCROOT/$PRODUCT_NAME/$SAMPLE_CONFIG_FILE_NAME\n\nif [ -f \"$CONFIG_FILE_PATH\" ]; then\n  echo \"$CONFIG_FILE_PATH exists.\"\nelse\n  echo \"$CONFIG_FILE_PATH does not exist, copying sample\"\n  cp -v \"${SAMPLE_CONFIG_FILE_PATH}\" \"${CONFIG_FILE_PATH}\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -313,16 +383,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DA5B73A2918BE8B00AB2345 /* RequestErrorEnum.swift in Sources */,
 				5D2C450D2913A1AA009157C6 /* AppDelegate.swift in Sources */,
+				5DA5B7382918BD3300AB2345 /* APICaller.swift in Sources */,
 				5D2C44F32913634E009157C6 /* MovieDB.xcdatamodeld in Sources */,
 				5DA5B6FD2913C81B00AB2345 /* CategoryViewController.swift in Sources */,
 				5D2C451B2913A780009157C6 /* CoreDataManager.swift in Sources */,
+				5DA5B7332918B98C00AB2345 /* Actor.swift in Sources */,
 				5DA5B6EE2913C7B100AB2345 /* HomeViewController.swift in Sources */,
 				5DA5B6F92913C80C00AB2345 /* ComingSoonViewController.swift in Sources */,
+				5DA5B72E2918B35A00AB2345 /* DetailInfoFilm.swift in Sources */,
+				5DA5B73C2918C0C000AB2345 /* Network.swift in Sources */,
 				5DA5B7072914A34800AB2345 /* AppBarUIView.swift in Sources */,
+				5DA5B7352918BC5B00AB2345 /* VideoTrailer.swift in Sources */,
+				5DA5B7302918B89500AB2345 /* GeneralInfoFilm.swift in Sources */,
 				5DA5B6F52913C7FD00AB2345 /* FavoriteViewController.swift in Sources */,
 				5DA5B7012913C8A000AB2345 /* TabbarItemEnum.swift in Sources */,
 				5DA5B7042913CC0F00AB2345 /* TabbarViewController.swift in Sources */,
+				5DA5B73E2918C1E700AB2345 /* CategoryPathEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
