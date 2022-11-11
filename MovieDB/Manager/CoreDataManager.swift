@@ -10,7 +10,7 @@ import CoreData
 
 final class PersistentContainer {
 
-    static let shared =  PersistentContainer()
+    static let shared = PersistentContainer()
     private var persistentContainer: NSPersistentContainer?
 
     private init() {
@@ -24,7 +24,7 @@ final class PersistentContainer {
 
     func saveContext() {
         let context = persistentContainer?.viewContext
-        if (context?.hasChanges != nil) {
+        if context?.hasChanges != nil {
             do {
                 try context?.save()
             } catch {

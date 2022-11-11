@@ -10,20 +10,18 @@ import Foundation
 final class APICaller {
 
     static let shared = APICaller()
+    private let network = Network.shared
     private let session: URLSession
     private let imageCache = NSCache<NSString, AnyObject>()
 
     private var apiKey: String {
-      get {
-        guard let filePath = Bundle.main.path(forResource: "TMDBInfo", ofType: "plist") else {
-          fatalError("Couldn't find file 'TMDB-Info.plist'.")
+        get {
+            guard let filePath = Bundle.main.path(forResource: "TMDBInfo", ofType: "plist"),
+                  let value = NSDictionary(contentsOfFile: filePath)?.object(forKey: "API_KEY") as? String else {
+                return "Couldn't find API Key"
+            }
+            return value
         }
-        let plist = NSDictionary(contentsOfFile: filePath)
-        guard let value = plist?.object(forKey: "API_KEY") as? String else {
-          fatalError("Couldn't find key 'API_KEY' in 'TMDB-Info.plist'.")
-        }
-        return value
-      }
     }
 
     private init() {
@@ -31,8 +29,8 @@ final class APICaller {
         session = URLSession(configuration: config)
     }
 
-    func getJSON<T: Codable>(urlApi: String, method: String, completion: @escaping (T?, Error?) -> Void) {
-        guard let url = URL(string: urlApi + "?api_key=\(apiKey)") else {
+    func request<T: Codable>(urlString: String, method: String, expecting: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
+        guard let url = URL(string: urlString + "?api_key=\(apiKey)") else {
             return
         }
         var request = URLRequest(url: url)
@@ -41,74 +39,74 @@ final class APICaller {
         let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
 
             if let error = error {
-                completion(nil, error)
+                completion(.failure(error))
                 return
             }
 
             guard let httpResponse = response as? HTTPURLResponse else {
-                completion(nil, RequestError.badResponse)
+                completion(.failure(RequestError.badResponse))
                 return
             }
 
             guard (200...299).contains(httpResponse.statusCode) else {
-                completion(nil, RequestError.badStatusCode(httpResponse.statusCode))
+                completion(.failure(RequestError.badStatusCode(httpResponse.statusCode)))
                 return
             }
 
             guard let data = data else {
-                completion(nil, RequestError.badData)
+                completion(.failure(RequestError.badData))
                 return
             }
 
             do {
                 let results = try JSONDecoder().decode(T.self, from: data)
-                completion(results, nil)
+                completion(.success(results))
             } catch let error {
-                print(error)
+                completion(.failure(error))
             }
         }
         task.resume()
     }
 
-    func getImage(imageURL: String, completion: @escaping (Data?, Error?) -> Void) {
-        guard let url = URL(string: imageURL) else {
-            completion(nil, RequestError.badData)
+    func getImage(imageURL: String, completion: @escaping(Result<Data, Error>) -> Void) {
+        if let cachedImage = imageCache.object(forKey: imageURL as NSString) as? Data {
+            completion(.success(cachedImage))
             return
         }
-        if let cachedImage = imageCache.object(forKey: url.absoluteString as NSString) as? Data {
-            completion(cachedImage, nil)
+        let urlString = network.loadImageURL() + imageURL
+        guard let url = URL(string: urlString) else {
+            completion(.failure(RequestError.badData))
             return
-        } else {
-            let task = session.downloadTask(with: url) { (localUrl: URL?, response: URLResponse?, error: Error?) in
-                if let error = error {
-                    completion(nil, error)
-                    return
-                }
-
-                guard let httpResponse = response as? HTTPURLResponse else {
-                    completion(nil, RequestError.badResponse)
-                    return
-                }
-
-                guard (200...299).contains(httpResponse.statusCode) else {
-                    completion(nil, RequestError.badStatusCode(httpResponse.statusCode))
-                    return
-                }
-
-                guard let localUrl = localUrl else {
-                    completion(nil, RequestError.badData)
-                    return
-                }
-
-                do {
-                    let data = try Data(contentsOf: localUrl)
-                    self.imageCache.setObject(data as AnyObject, forKey: url.absoluteString as NSString)
-                    completion(data, nil)
-                } catch let error {
-                    completion(nil, error)
-                }
+        }
+        let task = session.downloadTask(with: url) { (localUrl: URL?, response: URLResponse?, error: Error?) in
+            if let error = error {
+                completion(.failure(error))
+                return
             }
-            task.resume()
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(RequestError.badResponse))
+                return
+            }
+            
+            guard (200...299).contains(httpResponse.statusCode) else {
+                completion(.failure(RequestError.badStatusCode(httpResponse.statusCode)))
+                return
+            }
+            
+            guard let localUrl = localUrl else {
+                completion(.failure(RequestError.badData))
+                return
+            }
+            
+            do {
+                let data = try Data(contentsOf: localUrl)
+                self.imageCache.setObject(data as AnyObject, forKey: imageURL as NSString)
+                completion(.success(data))
+            } catch let error {
+                completion(.failure(error))
+            }
         }
+        task.resume()
     }
 }

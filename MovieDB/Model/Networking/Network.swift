@@ -15,22 +15,30 @@ struct Network {
     private let baseUrl = "https://api.themoviedb.org/3/"
 
     func getCategoryListURL(path: CategoryPath) -> String {
-        return "\(baseUrl)/movie/\(path.rawValue)"
+        return "\(baseUrl)movie/\(path.rawValue)"
     }
 
     func getDetailFilmURL(id: Int) -> String {
-        return "\(baseUrl)/movie/\(id)"
+        return "\(baseUrl)movie/\(id)"
     }
 
     func getActorListOfFilmURL(id: Int) -> String {
-        return "\(baseUrl)/movie/\(id)/credits"
+        return "\(baseUrl)movie/\(id)/credits"
     }
 
     func getImageURL(id: Int) -> String {
-        return "\(baseUrl)/movie/\(id)/images"
+        return "\(baseUrl)movie/\(id)/images"
     }
 
     func getVideoURL(id: Int) -> String {
-        return "\(baseUrl)/movie/\(id)/videos"
+        return "\(baseUrl)movie/\(id)/videos"
+    }
+    
+    func getGenresURL() -> String {
+        return "\(baseUrl)genre/movie/list"
+    }
+    
+    func loadImageURL() -> String {
+        return "https://image.tmdb.org/t/p/original"
     }
 }

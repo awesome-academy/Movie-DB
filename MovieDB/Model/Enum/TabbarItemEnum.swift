@@ -13,24 +13,24 @@ enum TabbarItem {
     case category
     case comingSoon
     case favoriteList
-
+    
     var item: UITabBarItem {
         switch self {
         case .home:
             return UITabBarItem(title: "",
-                         image: UIImage(named: "home_icon_tabbar"),
+                                image: UIImage(named: "home_icon_tabbar"),
                                 tag: 1)
         case .category:
             return UITabBarItem(title: "",
-                         image: UIImage(named: "category_icon_tabbar"),
+                                image: UIImage(named: "category_icon_tabbar"),
                                 tag: 2)
         case .comingSoon:
             return UITabBarItem(title: "",
-                         image: UIImage(named: "coming_soon_icon_tabbar"),
+                                image: UIImage(named: "coming_soon_icon_tabbar"),
                                 tag: 3)
         case .favoriteList:
             return UITabBarItem(title: "",
-                         image: UIImage(named: "favorite_icon_tabbar"),
+                                image: UIImage(named: "favorite_icon_tabbar"),
                                 tag: 4)
         }
     }
