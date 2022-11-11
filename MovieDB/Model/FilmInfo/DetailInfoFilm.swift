@@ -11,23 +11,23 @@ import UIKit
 struct DetailInfoFilm: Codable {
     let id: Int
     let title: String
-    let backdropImageURL: String
-    let posterImageURL: String?
-    let overview: String?
-    let isAdult: Bool
+    let backdropPath: String
+    let posterPath: String
+    let overview: String
+    let adult: Bool
     let popularity: Double
-    let voteAverage: String
-    let genre: [Int]
+    let voteAverage: Double
+    let genres: [Genre]
 
     private enum CodingKeys: String, CodingKey {
         case id
         case title
-        case backdropImageURL
-        case posterImageURL
+        case backdropPath = "backdrop_path"
+        case posterPath = "poster_path"
         case overview
-        case isAdult
+        case adult
         case popularity
-        case voteAverage
-        case genre
+        case voteAverage = "vote_average"
+        case genres
     }
 }

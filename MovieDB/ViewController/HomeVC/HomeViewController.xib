@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -11,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="MovieDB" customModuleProvider="target">
             <connections>
                 <outlet property="appBarUIView" destination="I8c-zR-jCu" id="LGA-Da-CUa"/>
+                <outlet property="collectionView" destination="ab4-o9-Cvv" id="vlz-Ve-EVQ"/>
                 <outlet property="view" destination="QFR-cW-8PC" id="1z6-Uy-ytX"/>
             </connections>
         </placeholder>
@@ -26,13 +28,27 @@
                         <constraint firstAttribute="height" constant="50" id="Hph-ZM-ul9"/>
                     </constraints>
                 </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ab4-o9-Cvv">
+                    <rect key="frame" x="16" y="113" width="358" height="697"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GIp-iG-AtC">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="GVB-q2-0xY"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="GVB-q2-0xY" firstAttribute="bottom" secondItem="ab4-o9-Cvv" secondAttribute="bottom" id="35S-dc-AKA"/>
                 <constraint firstItem="GVB-q2-0xY" firstAttribute="trailing" secondItem="I8c-zR-jCu" secondAttribute="trailing" constant="16" id="BX2-8Q-ADR"/>
                 <constraint firstItem="I8c-zR-jCu" firstAttribute="top" secondItem="GVB-q2-0xY" secondAttribute="top" constant="16" id="QPO-Kf-YGm"/>
+                <constraint firstItem="GVB-q2-0xY" firstAttribute="trailing" secondItem="ab4-o9-Cvv" secondAttribute="trailing" constant="16" id="Z8R-4G-1R9"/>
+                <constraint firstItem="ab4-o9-Cvv" firstAttribute="leading" secondItem="GVB-q2-0xY" secondAttribute="leading" constant="16" id="aFX-Um-86J"/>
                 <constraint firstItem="I8c-zR-jCu" firstAttribute="leading" secondItem="GVB-q2-0xY" secondAttribute="leading" constant="16" id="gNy-Ge-52R"/>
+                <constraint firstItem="ab4-o9-Cvv" firstAttribute="top" secondItem="I8c-zR-jCu" secondAttribute="bottom" id="vB8-lR-pgp"/>
             </constraints>
             <point key="canvasLocation" x="-162" y="-18"/>
         </view>
