@@ -54,6 +54,8 @@
 		5DA5B770291BA7BD00AB2345 /* GenreFilm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B76F291BA7BD00AB2345 /* GenreFilm.swift */; };
 		5DA5B772291BACC500AB2345 /* FilterTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B771291BACC500AB2345 /* FilterTitle.swift */; };
 		5DBC214C2921E05A00CC1931 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC214B2921E05A00CC1931 /* UIView+.swift */; };
+		5DBC21502921EFB100CC1931 /* DelayerRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC214F2921EFB100CC1931 /* DelayerRunner.swift */; };
+		5DE6CA452922460B007C93B7 /* IndicatorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE6CA442922460B007C93B7 /* IndicatorEnum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +108,8 @@
 		5DA5B76F291BA7BD00AB2345 /* GenreFilm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreFilm.swift; sourceTree = "<group>"; };
 		5DA5B771291BACC500AB2345 /* FilterTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTitle.swift; sourceTree = "<group>"; };
 		5DBC214B2921E05A00CC1931 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		5DBC214F2921EFB100CC1931 /* DelayerRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayerRunner.swift; sourceTree = "<group>"; };
+		5DE6CA442922460B007C93B7 /* IndicatorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				5DA457B0291E0235000F648F /* CustomImageView.swift */,
+				5DBC214F2921EFB100CC1931 /* DelayerRunner.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 				5DA5B7002913C8A000AB2345 /* TabbarItemEnum.swift */,
 				5DA5B75D291B7BEE00AB2345 /* CompositionalGroupAlignment.swift */,
 				5DA5B771291BACC500AB2345 /* FilterTitle.swift */,
+				5DE6CA442922460B007C93B7 /* IndicatorEnum.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -510,6 +516,8 @@
 				5DA5B6EE2913C7B100AB2345 /* HomeViewController.swift in Sources */,
 				5DA5B6F92913C80C00AB2345 /* ComingSoonViewController.swift in Sources */,
 				5DA5B72E2918B35A00AB2345 /* DetailInfoFilm.swift in Sources */,
+				5DBC21502921EFB100CC1931 /* DelayerRunner.swift in Sources */,
+				5DE6CA452922460B007C93B7 /* IndicatorEnum.swift in Sources */,
 				5DA5B73C2918C0C000AB2345 /* Network.swift in Sources */,
 				5DA5B7072914A34800AB2345 /* AppBarUIView.swift in Sources */,
 				5DA5B757291B5FF700AB2345 /* HorizontalCustomCollectionViewCell.swift in Sources */,
