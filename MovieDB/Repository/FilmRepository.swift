@@ -39,11 +39,32 @@ final class FilmRepository: FilmRepositoryType {
         }
     }
     
-    func getListGenre(urlString: String, completion: @escaping (Result<[Genre]?, Error>) -> Void) {
-        api.request(urlString: urlString, method: MethodRequest.get.rawValue, expecting: GenreList.self) { result in
+    func getListGenre(urlString: String,
+                      completion: @escaping (Result<[Genre]?, Error>) -> Void) {
+        api.request(urlString: urlString,
+                    method: MethodRequest.get.rawValue,
+                    expecting: GenreList.self) { result in
             switch result {
             case .success(let data):
                 completion(.success(data.genres))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getFilmsByQuery(urlString: String,
+                         queryKey: String,
+                         queryValue: String,
+                         completion: @escaping (Result<[DomainInfoFilm]?, Error>) -> Void) {
+        api.queryRequest(urlString: urlString,
+                         queryKey: queryKey,
+                         queryValue: queryValue,
+                         method: MethodRequest.get.rawValue,
+                         expecting: FilmList.self) { result in
+            switch result {
+            case .success(let data):
+                completion(.success(data.results))
             case .failure(let error):
                 completion(.failure(error))
             }

@@ -24,14 +24,14 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XtJ-Xr-xVi" customClass="AppBarUIView" customModule="MovieDB" customModuleProvider="target">
-                    <rect key="frame" x="16" y="16" width="358" height="50"/>
+                    <rect key="frame" x="16" y="63" width="358" height="50"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="HQk-ed-7Wf"/>
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Htq-LE-53Q">
-                    <rect key="frame" x="16" y="148" width="358" height="696"/>
+                    <rect key="frame" x="16" y="195" width="358" height="615"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XbR-cb-gLB">
                         <size key="itemSize" width="128" height="128"/>
@@ -41,7 +41,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UcA-4c-1I7">
-                    <rect key="frame" x="16" y="82" width="358" height="50"/>
+                    <rect key="frame" x="16" y="129" width="358" height="50"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Vgd-PW-Smp">
                             <rect key="frame" x="16" y="10.999999999999996" width="30" height="28.333333333333329"/>

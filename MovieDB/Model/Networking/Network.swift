@@ -41,4 +41,12 @@ struct Network {
     func loadImageURL() -> String {
         return "https://image.tmdb.org/t/p/original"
     }
+    
+    func getFilmsByGenreURL() -> String {
+        return "\(baseUrl)discover/movie"
+    }
+    
+    func getSearchURL() -> String {
+        return "\(baseUrl)search/movie"
+    }
 }
