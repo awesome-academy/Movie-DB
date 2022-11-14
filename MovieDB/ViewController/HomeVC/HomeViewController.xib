@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="MovieDB" customModuleProvider="target">
             <connections>
-                <outlet property="appBarUIView" destination="I8c-zR-jCu" id="LGA-Da-CUa"/>
+                <outlet property="appBarView" destination="I8c-zR-jCu" id="tT4-4Q-3Rc"/>
                 <outlet property="collectionView" destination="ab4-o9-Cvv" id="vlz-Ve-EVQ"/>
                 <outlet property="view" destination="QFR-cW-8PC" id="1z6-Uy-ytX"/>
             </connections>
@@ -22,14 +22,14 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8c-zR-jCu" customClass="AppBarUIView" customModule="MovieDB" customModuleProvider="target">
-                    <rect key="frame" x="16" y="63" width="358" height="50"/>
+                    <rect key="frame" x="16" y="16" width="358" height="50"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="Hph-ZM-ul9"/>
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ab4-o9-Cvv">
-                    <rect key="frame" x="16" y="113" width="358" height="697"/>
+                    <rect key="frame" x="16" y="66" width="358" height="778"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GIp-iG-AtC">
                         <size key="itemSize" width="128" height="128"/>
