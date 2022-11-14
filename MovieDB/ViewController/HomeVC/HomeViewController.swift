@@ -9,7 +9,7 @@ import UIKit
 
 final class HomeViewController: UIViewController {
 
-    @IBOutlet private weak var appBarUIView: AppBarUIView!
+    @IBOutlet private weak var appBarView: AppBarUIView!
     @IBOutlet private weak var collectionView: UICollectionView!
 
     private let headerId = "headerId"
@@ -29,23 +29,23 @@ final class HomeViewController: UIViewController {
         collectionView.delegate = self
         collectionView.backgroundColor = .black
         
-        collectionView.register(UINib(nibName: "VerticalCustomCollectionViewCell",
+        collectionView.register(UINib(nibName: VerticalCustomCollectionViewCell.identifier,
                                       bundle: nil),
-                                forCellWithReuseIdentifier: "s0")
-        collectionView.register(UINib(nibName: "VerticalCustomCollectionViewCell",
+                                forCellWithReuseIdentifier: VerticalCustomCollectionViewCell.identifier)
+        collectionView.register(UINib(nibName: VerticalCustomCollectionViewCell.identifier,
                                       bundle: nil),
-                                forCellWithReuseIdentifier: "s1")
+                                forCellWithReuseIdentifier: VerticalCustomCollectionViewCell.identifier)
         
-        collectionView.register(UINib(nibName: "HorizontalCustomCollectionViewCell",
+        collectionView.register(UINib(nibName: HorizontalCustomCollectionViewCell.identifier,
                                       bundle: nil),
-                                forCellWithReuseIdentifier: "s2")
-        collectionView.register(UINib(nibName: "HorizontalCustomCollectionViewCell",
+                                forCellWithReuseIdentifier: HorizontalCustomCollectionViewCell.identifier)
+        collectionView.register(UINib(nibName: HorizontalCustomCollectionViewCell.identifier,
                                       bundle: nil),
-                                forCellWithReuseIdentifier: "s3")
+                                forCellWithReuseIdentifier: HorizontalCustomCollectionViewCell.identifier)
         
-        collectionView.register(UINib(nibName: "HeaderCollectionReusableView", bundle: nil),
+        collectionView.register(UINib(nibName: HeaderCollectionReusableView.identifier, bundle: nil),
                                 forSupplementaryViewOfKind: headerId,
-                                withReuseIdentifier: "HeaderCollectionReusableView")
+                                withReuseIdentifier: HeaderCollectionReusableView.identifier)
     }
 
     private func initListGenre() {
@@ -59,27 +59,27 @@ final class HomeViewController: UIViewController {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.showAlert(title: "ERROR", messageError: error.localizedDescription)
-                    }
+                }
             }
         }
     }
 
     private func initListFilm() {
         filmSections = Array(repeating: FilmSection(), count: 4)
-        getListFilm(path: CategoryPath.popular) { [weak self] listPopularFilm in
+        getListFilm(path: CategoryPath.upcoming) { [weak self] listUpcomingFilm in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                var listPopularFilm = listPopularFilm
-                listPopularFilm.convertGenresToString(genres: self.genres)
-                self.filmSections[0].films = listPopularFilm
-                self.filmSections[0].titleSection = FilterTitle.popular.rawValue
+                let listUpcomingFilm = listUpcomingFilm
+                listUpcomingFilm.convertGenresToString(genres: self.genres)
+                self.filmSections[0].films = listUpcomingFilm
+                self.filmSections[0].titleSection = FilterTitle.upcoming.rawValue
                 self.collectionView.reloadData()
             }
         }
         getListFilm(path: CategoryPath.topRated) { [weak self] listTopRatedFilm in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                var listTopRatedFilm = listTopRatedFilm
+                let listTopRatedFilm = listTopRatedFilm
                 listTopRatedFilm.convertGenresToString(genres: self.genres)
                 self.filmSections[1].films = listTopRatedFilm
                 self.filmSections[1].titleSection = FilterTitle.topRated.rawValue
@@ -89,20 +89,20 @@ final class HomeViewController: UIViewController {
         getListFilm(path: CategoryPath.nowPlaying) { [weak self] listNowPlayingFilm in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                var listNowPlayingFilm = listNowPlayingFilm
+                let listNowPlayingFilm = listNowPlayingFilm
                 listNowPlayingFilm.convertGenresToString(genres: self.genres)
                 self.filmSections[2].films = listNowPlayingFilm
                 self.filmSections[2].titleSection = FilterTitle.nowPlaying.rawValue
                 self.collectionView.reloadData()
             }
         }
-        getListFilm(path: CategoryPath.upcoming) { [weak self] listUpcomingFilm in
+        getListFilm(path: CategoryPath.popular) { [weak self] listPopularFilm in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                var listUpcomingFilm = listUpcomingFilm
-                listUpcomingFilm.convertGenresToString(genres: self.genres)
-                self.filmSections[3].films = listUpcomingFilm
-                self.filmSections[3].titleSection = FilterTitle.upcoming.rawValue
+                let listPopularFilm = listPopularFilm
+                listPopularFilm.convertGenresToString(genres: self.genres)
+                self.filmSections[3].films = listPopularFilm
+                self.filmSections[3].titleSection = FilterTitle.popular.rawValue
                 self.collectionView.reloadData()
             }
         }
@@ -186,7 +186,7 @@ extension HomeViewController: UICollectionViewDataSource {
                         at indexPath: IndexPath) -> UICollectionReusableView {
         guard let headerCell = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
-            withReuseIdentifier: "HeaderCollectionReusableView",
+            withReuseIdentifier: HeaderCollectionReusableView.identifier,
             for: indexPath) as? HeaderCollectionReusableView else {
             return UICollectionReusableView()
         }
@@ -207,7 +207,7 @@ extension HomeViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case 0:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: "s0",
+                withReuseIdentifier: VerticalCustomCollectionViewCell.identifier,
                 for: indexPath) as? VerticalCustomCollectionViewCell else {
                 return UICollectionViewCell()
             }
@@ -215,7 +215,7 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: "s1",
+                withReuseIdentifier: VerticalCustomCollectionViewCell.identifier,
                 for: indexPath) as? VerticalCustomCollectionViewCell else {
                 return UICollectionViewCell()
             }
@@ -223,7 +223,7 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         case 2:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: "s2",
+                withReuseIdentifier: HorizontalCustomCollectionViewCell.identifier,
                 for: indexPath) as? HorizontalCustomCollectionViewCell else {
                 return UICollectionViewCell()
             }
@@ -231,7 +231,7 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         default:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: "s3",
+                withReuseIdentifier: HorizontalCustomCollectionViewCell.identifier,
                 for: indexPath) as? HorizontalCustomCollectionViewCell else {
                 return UICollectionViewCell()
             }

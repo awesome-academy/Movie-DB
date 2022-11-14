@@ -29,7 +29,10 @@ final class APICaller {
         session = URLSession(configuration: config)
     }
 
-    func request<T: Codable>(urlString: String, method: String, expecting: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
+    func request<T: Codable>(urlString: String,
+                             method: String,
+                             expecting: T.Type,
+                             completion: @escaping (Result<T, Error>) -> Void) {
         guard let url = URL(string: urlString + "?api_key=\(apiKey)") else {
             return
         }

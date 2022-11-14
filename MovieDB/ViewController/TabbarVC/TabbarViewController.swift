@@ -20,7 +20,7 @@ final class TabbarViewController: UITabBarController {
         tabBar.backgroundColor = .black
         self.viewControllers = [
             configSubNavigationController(viewController: HomeViewController(), item: TabbarItem.home.item),
-            configSubNavigationController(viewController: CategoryViewController(), item: TabbarItem.category.item),
+            configSubNavigationController(viewController: SearchViewController(), item: TabbarItem.category.item),
             configSubNavigationController(viewController: ComingSoonViewController(), item: TabbarItem.comingSoon.item),
             configSubNavigationController(viewController: FavoriteViewController(), item: TabbarItem.favoriteList.item)
         ]
