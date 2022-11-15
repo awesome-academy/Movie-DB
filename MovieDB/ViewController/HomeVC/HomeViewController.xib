@@ -22,14 +22,14 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8c-zR-jCu" customClass="AppBarUIView" customModule="MovieDB" customModuleProvider="target">
-                    <rect key="frame" x="16" y="16" width="358" height="50"/>
+                    <rect key="frame" x="16" y="63" width="358" height="50"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="Hph-ZM-ul9"/>
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ab4-o9-Cvv">
-                    <rect key="frame" x="16" y="66" width="358" height="778"/>
+                    <rect key="frame" x="0.0" y="113" width="390" height="697"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GIp-iG-AtC">
                         <size key="itemSize" width="128" height="128"/>
@@ -45,8 +45,8 @@
                 <constraint firstItem="GVB-q2-0xY" firstAttribute="bottom" secondItem="ab4-o9-Cvv" secondAttribute="bottom" id="35S-dc-AKA"/>
                 <constraint firstItem="GVB-q2-0xY" firstAttribute="trailing" secondItem="I8c-zR-jCu" secondAttribute="trailing" constant="16" id="BX2-8Q-ADR"/>
                 <constraint firstItem="I8c-zR-jCu" firstAttribute="top" secondItem="GVB-q2-0xY" secondAttribute="top" constant="16" id="QPO-Kf-YGm"/>
-                <constraint firstItem="GVB-q2-0xY" firstAttribute="trailing" secondItem="ab4-o9-Cvv" secondAttribute="trailing" constant="16" id="Z8R-4G-1R9"/>
-                <constraint firstItem="ab4-o9-Cvv" firstAttribute="leading" secondItem="GVB-q2-0xY" secondAttribute="leading" constant="16" id="aFX-Um-86J"/>
+                <constraint firstItem="GVB-q2-0xY" firstAttribute="trailing" secondItem="ab4-o9-Cvv" secondAttribute="trailing" id="Z8R-4G-1R9"/>
+                <constraint firstItem="ab4-o9-Cvv" firstAttribute="leading" secondItem="GVB-q2-0xY" secondAttribute="leading" id="aFX-Um-86J"/>
                 <constraint firstItem="I8c-zR-jCu" firstAttribute="leading" secondItem="GVB-q2-0xY" secondAttribute="leading" constant="16" id="gNy-Ge-52R"/>
                 <constraint firstItem="ab4-o9-Cvv" firstAttribute="top" secondItem="I8c-zR-jCu" secondAttribute="bottom" id="vB8-lR-pgp"/>
             </constraints>

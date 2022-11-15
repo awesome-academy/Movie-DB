@@ -130,7 +130,7 @@ final class HomeViewController: UIViewController {
             if sectionNumber == 0 {
                 let item = CompositionalLayout.createItem(width: .fractionalWidth(1),
                                                           height: .fractionalHeight(1),
-                                                          spacingRight: 16)
+                                                          spacingLeft: 16)
                 let group = CompositionalLayout.createGroup(width: .fractionalWidth(1),
                                                             height: .absolute(200),
                                                             alignment: CompositionalGroupAlignment.horizontal,
@@ -142,7 +142,7 @@ final class HomeViewController: UIViewController {
             } else if sectionNumber == 1 {
                 let item = CompositionalLayout.createItem(width: .fractionalWidth(1),
                                                           height: .fractionalHeight(1),
-                                                          spacingRight: 16)
+                                                          spacingLeft: 16)
                 let group = CompositionalLayout.createGroup(width: .fractionalWidth(0.8),
                                                             height: .absolute(150),
                                                             alignment: CompositionalGroupAlignment.horizontal,
@@ -160,7 +160,7 @@ final class HomeViewController: UIViewController {
             } else {
                 let item = CompositionalLayout.createItem(width: .fractionalWidth(1),
                                                           height: .fractionalHeight(1),
-                                                          spacingRight: 16)
+                                                          spacingLeft: 16)
                 let group = CompositionalLayout.createGroup(width: .fractionalWidth(0.5),
                                                             height: .absolute(250),
                                                             alignment: CompositionalGroupAlignment.horizontal,
@@ -190,7 +190,7 @@ extension HomeViewController: UICollectionViewDataSource {
             for: indexPath) as? HeaderCollectionReusableView else {
             return UICollectionReusableView()
         }
-        headerCell.bindData(title: filmSections[indexPath.section].titleSection)
+        headerCell.bindData(title: filmSections[indexPath.section].titleSection, isShowViewAll: true)
         return headerCell
     }
 
@@ -243,5 +243,12 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "DetailFilmViewController", bundle: nil)
+        guard let filmDetailViewController = storyboard.instantiateViewController(
+            withIdentifier: "DetailViewController") as? DetailViewController else {
+            return
+        }
+        filmDetailViewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(filmDetailViewController, animated: true)
     }
 }

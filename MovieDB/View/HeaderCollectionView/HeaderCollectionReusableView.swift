@@ -16,7 +16,8 @@ final class HeaderCollectionReusableView: UICollectionReusableView {
         super.awakeFromNib()
     }
  
-    func bindData(title: String) {
+    func bindData(title: String, isShowViewAll: Bool) {
+        viewAllButton.isHidden = !isShowViewAll
         titleLabel.text = title
     }
 }
