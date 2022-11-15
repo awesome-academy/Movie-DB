@@ -15,13 +15,13 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xg-xh-HL6">
-                    <rect key="frame" x="0.0" y="0.0" width="242.66666666666666" height="53"/>
+                    <rect key="frame" x="16" y="0.0" width="218.66666666666666" height="53"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3uW-tA-mmU">
-                    <rect key="frame" x="250.66666666666666" y="12" width="69.333333333333343" height="29"/>
+                    <rect key="frame" x="242.66666666666666" y="12" width="69.333333333333343" height="29"/>
                     <color key="tintColor" red="1" green="0.7803921568627451" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="View All" titleAlignment="leading">
@@ -33,10 +33,10 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="6xg-xh-HL6" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="EFk-vh-V20"/>
-                <constraint firstAttribute="trailing" secondItem="3uW-tA-mmU" secondAttribute="trailing" id="EIg-Pg-x4Q"/>
+                <constraint firstAttribute="trailing" secondItem="3uW-tA-mmU" secondAttribute="trailing" constant="8" id="EIg-Pg-x4Q"/>
                 <constraint firstItem="3uW-tA-mmU" firstAttribute="leading" secondItem="6xg-xh-HL6" secondAttribute="trailing" constant="8" id="chx-dc-WSd"/>
                 <constraint firstItem="3uW-tA-mmU" firstAttribute="centerY" secondItem="6xg-xh-HL6" secondAttribute="centerY" id="rpF-AK-v6p"/>
-                <constraint firstItem="6xg-xh-HL6" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="sd3-7Z-hnf"/>
+                <constraint firstItem="6xg-xh-HL6" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="16" id="sd3-7Z-hnf"/>
                 <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="6xg-xh-HL6" secondAttribute="bottom" id="spK-rd-Rt6"/>
             </constraints>
             <connections>
