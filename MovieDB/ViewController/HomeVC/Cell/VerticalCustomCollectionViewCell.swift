@@ -21,7 +21,7 @@ final class VerticalCustomCollectionViewCell: UICollectionViewCell {
 
     func bindData(film: DomainInfoFilm) {
         nameFilmLabel.text = film.title
-        genreLabel.text = film.getGenres()
+        genreLabel.text = film.genresString
         if let urlString = film.posterImageURL {
             posterFilmImageView.setImage(url: urlString)
         }
