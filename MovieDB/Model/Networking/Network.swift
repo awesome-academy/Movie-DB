@@ -25,6 +25,10 @@ struct Network {
     func getActorListOfFilmURL(id: Int) -> String {
         return "\(baseUrl)movie/\(id)/credits"
     }
+    
+    func getSimilarFilmsURL(id: Int) -> String {
+        return "\(baseUrl)movie/\(id)/similar"
+    }
 
     func getImageURL(id: Int) -> String {
         return "\(baseUrl)movie/\(id)/images"

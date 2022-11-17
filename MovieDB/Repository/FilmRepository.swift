@@ -53,6 +53,20 @@ final class FilmRepository: FilmRepositoryType {
         }
     }
     
+    func getListActorOfFilm(urlString: String,
+                            completion: @escaping (Result<[Actor]?, Error>) -> Void) {
+        api.request(urlString: urlString,
+                    method: MethodRequest.get.rawValue,
+                    expecting: ActorList.self) { result in
+            switch result {
+            case .success(let data):
+                completion(.success(data.cast))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
     func getFilmsByQuery(urlString: String,
                          queryKey: String,
                          queryValue: String,

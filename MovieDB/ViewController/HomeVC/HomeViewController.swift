@@ -249,6 +249,7 @@ extension HomeViewController: UICollectionViewDelegate {
             return
         }
         filmDetailViewController.hidesBottomBarWhenPushed = true
+        filmDetailViewController.bindData(filmId: filmSections[indexPath.section].films[indexPath.row].id)
         self.navigationController?.pushViewController(filmDetailViewController, animated: true)
     }
 }

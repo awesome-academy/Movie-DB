@@ -9,22 +9,22 @@ import Foundation
 import UIKit
 
 struct ActorList: Codable {
-    let actors: [Actor]
+    let cast: [Actor]
 }
 
 struct Actor: Codable {
     let id: Int
     let name: String
-    let profileImageURL: String
-    let castId: String
+    let profileImageURL: String?
+    let castId: Int
     let character: String
     let gender: Int
 
     private enum CodingKeys: String, CodingKey {
         case id
         case name
-        case profileImageURL
-        case castId
+        case profileImageURL = "profile_path"
+        case castId = "cast_id"
         case character
         case gender
     }

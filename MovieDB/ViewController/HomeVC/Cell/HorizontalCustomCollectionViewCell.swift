@@ -20,7 +20,7 @@ final class HorizontalCustomCollectionViewCell: UICollectionViewCell {
 
     func bindData(film: DomainInfoFilm) {
         nameFilmLabel.text = film.title
-        genreFilmLabel.text = film.getGenres()
+        genreFilmLabel.text = film.genresString
         posterFilmImageView.setImage(url: film.posterImageURL ?? "")
     }
 

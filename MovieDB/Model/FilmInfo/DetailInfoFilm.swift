@@ -18,6 +18,8 @@ struct DetailInfoFilm: Codable {
     let popularity: Double
     let voteAverage: Double
     let genres: [Genre]
+    let runtime: Int
+    let releaseDate: String
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -29,5 +31,12 @@ struct DetailInfoFilm: Codable {
         case popularity
         case voteAverage = "vote_average"
         case genres
+        case runtime
+        case releaseDate = "release_date"
+    }
+    
+    var genresString: String {
+        let genres = genres.map { $0.name }
+        return genres.joined(separator: " • ")
     }
 }

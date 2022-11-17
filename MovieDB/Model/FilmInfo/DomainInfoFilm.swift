@@ -18,7 +18,7 @@ final class DomainInfoFilm: Codable {
     let isAdult: Bool
     let voteAverage: Double
     let genre: [Int]
-    var genreString: [String] = []
+    var genres: [String] = []
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -29,7 +29,7 @@ final class DomainInfoFilm: Codable {
         case genre = "genre_ids"
     }
     
-    func getGenres() -> String {
-        return genreString.joined(separator: " • ")
+    var genresString: String {
+        return genres.joined(separator: " • ")
     }
 }

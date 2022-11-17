@@ -13,7 +13,7 @@ extension Array where Element: DomainInfoFilm {
             let genres = genres
                 .filter { film.genre.contains($0.id) }
                 .map { $0.name }
-            film.genreString = genres
+            film.genres = genres
         }
     }
 }
