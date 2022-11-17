@@ -31,6 +31,11 @@ final class SearchViewController: UIViewController {
         initListGenre()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     private func configView() {
         searchView.clipsToBounds = true
         searchView.layer.cornerRadius = 10

@@ -11,7 +11,9 @@ final class HorizontalCustomCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet private weak var genreFilmLabel: UILabel!
     @IBOutlet private weak var nameFilmLabel: UILabel!
-    @IBOutlet weak var posterFilmImageView: CustomImageView!
+    @IBOutlet private weak var posterFilmImageView: CustomImageView!
+    @IBOutlet private weak var favoriteView: UIView!
+    @IBOutlet private weak var favoriteImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,7 +27,10 @@ final class HorizontalCustomCollectionViewCell: UICollectionViewCell {
     }
 
     private func configView() {
-        self.clipsToBounds = true
-        self.layer.cornerRadius = 20
+        self.makeCornerRadius(20)
+        favoriteView.makeCornerRadius(10)
+    }
+    
+    @IBAction private func favoriteAction(_ sender: Any) {
     }
 }

@@ -20,6 +20,7 @@
 		5D8E3DD729234ABF0011F4C4 /* DetailFilmHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8E3DD529234ABF0011F4C4 /* DetailFilmHeaderCollectionReusableView.swift */; };
 		5D8E3DD829234ABF0011F4C4 /* DetailFilmHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D8E3DD629234ABF0011F4C4 /* DetailFilmHeaderCollectionReusableView.xib */; };
 		5D8E3DDA29237C780011F4C4 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8E3DD929237C780011F4C4 /* Int+.swift */; };
+		5D8E3DE3292620D90011F4C4 /* EnumTabbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8E3DE2292620D90011F4C4 /* EnumTabbarItem.swift */; };
 		5DA457B1291E0235000F648F /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA457B0291E0235000F648F /* CustomImageView.swift */; };
 		5DA457B5291E2338000F648F /* Sequence+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA457B4291E2338000F648F /* Sequence+.swift */; };
 		5DA457B9291E2BC8000F648F /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA457B7291E2BC8000F648F /* SearchCollectionViewCell.swift */; };
@@ -82,6 +83,7 @@
 		5D8E3DD529234ABF0011F4C4 /* DetailFilmHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFilmHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		5D8E3DD629234ABF0011F4C4 /* DetailFilmHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailFilmHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		5D8E3DD929237C780011F4C4 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
+		5D8E3DE2292620D90011F4C4 /* EnumTabbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumTabbarItem.swift; sourceTree = "<group>"; };
 		5DA457B0291E0235000F648F /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		5DA457B4291E2338000F648F /* Sequence+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+.swift"; sourceTree = "<group>"; };
 		5DA457B7291E2BC8000F648F /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				5DA5B7032913CC0F00AB2345 /* TabbarViewController.swift */,
+				5D8E3DE2292620D90011F4C4 /* EnumTabbarItem.swift */,
 			);
 			path = TabbarVC;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				5DA5B757291B5FF700AB2345 /* HorizontalCustomCollectionViewCell.swift in Sources */,
 				5DBC214C2921E05A00CC1931 /* UIView+.swift in Sources */,
 				5DA5B7352918BC5B00AB2345 /* VideoTrailer.swift in Sources */,
+				5D8E3DE3292620D90011F4C4 /* EnumTabbarItem.swift in Sources */,
 				5DA5B772291BACC500AB2345 /* FilterTitle.swift in Sources */,
 				5DA5B6F52913C7FD00AB2345 /* FavoriteViewController.swift in Sources */,
 				5D6B2537292339DF00F8A42E /* HeaderTitle.swift in Sources */,
