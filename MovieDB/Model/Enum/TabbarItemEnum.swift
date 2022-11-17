@@ -11,7 +11,7 @@ import UIKit
 enum TabbarItem {
     case home
     case category
-    case comingSoon
+    case trending
     case favoriteList
     
     var item: UITabBarItem {
@@ -24,9 +24,9 @@ enum TabbarItem {
             return UITabBarItem(title: "",
                                 image: UIImage(named: "category_icon_tabbar"),
                                 tag: 2)
-        case .comingSoon:
+        case .trending:
             return UITabBarItem(title: "",
-                                image: UIImage(named: "coming_soon_icon_tabbar"),
+                                image: UIImage(named: "trending_icon_tabbar"),
                                 tag: 3)
         case .favoriteList:
             return UITabBarItem(title: "",

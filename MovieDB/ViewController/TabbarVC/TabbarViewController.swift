@@ -19,17 +19,27 @@ final class TabbarViewController: UITabBarController {
         tabBar.unselectedItemTintColor = .gray
         tabBar.backgroundColor = .black
         self.viewControllers = [
-            configSubNavigationController(viewController: HomeViewController(), item: TabbarItem.home.item),
-            configSubNavigationController(viewController: SearchViewController(), item: TabbarItem.category.item),
-            configSubNavigationController(viewController: ComingSoonViewController(), item: TabbarItem.comingSoon.item),
-            configSubNavigationController(viewController: FavoriteViewController(), item: TabbarItem.favoriteList.item)
+            configSubNavigationController(viewController: HomeViewController(),
+                                          item: TabbarItem.home.item,
+                                          title: TabbarItemTitle.home.rawValue),
+            configSubNavigationController(viewController: SearchViewController(),
+                                          item: TabbarItem.category.item,
+                                          title: TabbarItemTitle.category.rawValue),
+            configSubNavigationController(viewController: ComingSoonViewController(),
+                                          item: TabbarItem.trending.item,
+                                          title: TabbarItemTitle.trending.rawValue),
+            configSubNavigationController(viewController: FavoriteViewController(),
+                                          item: TabbarItem.favoriteList.item,
+                                          title: TabbarItemTitle.myList.rawValue)
         ]
     }
 
     private func configSubNavigationController(viewController: UIViewController,
-                                               item: UITabBarItem) -> UINavigationController {
+                                               item: UITabBarItem,
+                                               title: String) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.tabBarItem = item
+        navigationController.tabBarItem.title = title
         return navigationController
     }
 }

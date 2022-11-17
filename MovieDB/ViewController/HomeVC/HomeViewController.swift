@@ -24,6 +24,12 @@ final class HomeViewController: UIViewController {
         collectionView.collectionViewLayout = createLayout()
         initListGenre()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     private func registerInit() {
         collectionView.dataSource = self
         collectionView.delegate = self
