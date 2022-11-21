@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import YoutubePlayer_in_WKWebView
 
 enum DetailScreenConstants: Double {
     case cornerRadiusValue = 10
@@ -17,7 +18,7 @@ final class DetailViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var backButtonView: UIView!
     @IBOutlet private weak var favoriteButtonView: UIView!
-    @IBOutlet private weak var backDropImageView: CustomImageView!
+    @IBOutlet private weak var playerVideo: WKYTPlayerView!
     
     private let headerId = "headerId"
     private var filmId: Int?
@@ -32,6 +33,7 @@ final class DetailViewController: UIViewController {
     private var isFavorited = false
     private let coreData = CoreDataManager.shared
     static var identifier = "DetailViewController"
+    private var videoKey = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +43,9 @@ final class DetailViewController: UIViewController {
         setImageForFavoriteButton()
         initListGenre()
         getListFavoriteFilm()
+        playerVideo.alpha = 0
+        playerVideo.tintColor = .clear
+        playerVideo.backgroundColor = .clear
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,9 +58,15 @@ final class DetailViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        playerVideo.stopVideo()
+    }
+    
     private func configView() {
         backButtonView.makeCornerRadius(DetailScreenConstants.cornerRadiusValue.rawValue)
-        favoriteButtonView.makeCornerRadius(DetailScreenConstants.cornerRadiusValue.rawValue)
+        let cornerRadiusValue = favoriteButtonView.frame.size.width / 2
+        favoriteButtonView.makeCornerRadius(cornerRadiusValue)
     }
     
     private func initRegister() {
@@ -77,6 +88,7 @@ final class DetailViewController: UIViewController {
         collectionView.register(UINib(nibName: DetailFilmHeaderCollectionReusableView.identifier, bundle: nil),
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: DetailFilmHeaderCollectionReusableView.identifier)
+        playerVideo.delegate = self
     }
     
     func bindData(filmId: Int, isFavorited: Bool) {
@@ -161,9 +173,31 @@ final class DetailViewController: UIViewController {
                 guard let data = data else { return }
                 DispatchQueue.main.async {
                     self.film = data
-                    if let urlString = self.film?.backdropPath {
-                        self.backDropImageView.setImage(url: urlString)
-                    }
+                    self.initTrailerFilm()
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.showAlert(title: "ERROR", messageError: error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    private func initTrailerFilm() {
+        guard let filmId = filmId else {
+            return
+        }
+        let url = network.getVideoURL(id: filmId)
+        filmRepository.getVideo(urlString: url) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let data):
+                guard let videoKey = data?.first(where: { $0.type == TypeVideo.trailer.rawValue })?.key else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.videoKey = videoKey
+                    self.playerVideo.load(withVideoId: videoKey)
                     self.initListActor()
                 }
             case .failure(let error):
@@ -226,7 +260,7 @@ final class DetailViewController: UIViewController {
     }
     
     private func setImageForFavoriteButton() {
-        favoriteImageView.image = UIImage(systemName: isFavorited ? "heart.fill" : "heart")
+        favoriteImageView.image = UIImage(systemName: isFavorited ? "heart.fill" : "heart.fill")
         favoriteImageView.tintColor = isFavorited ? .red : .white
     }
     
@@ -287,7 +321,12 @@ extension DetailViewController: UICollectionViewDataSource {
                 return UICollectionReusableView()
             }
             if let film = film {
-                headerCell.bindData(film: film, title: HeaderTitle.cast.rawValue)
+                headerCell.bindData(film: film, title: HeaderTitle.cast.rawValue, videoKey: videoKey)
+                headerCell.playVideo { [weak self] videoKey in
+                    guard let self = self else { return }
+                    self.playerVideo.load(withVideoId: videoKey)
+                    self.playerVideo.playVideo()
+                }
             }
             return headerCell
         default:
@@ -352,6 +391,16 @@ extension DetailViewController: UICollectionViewDelegate {
             self.navigationController?.pushViewController(filmDetailViewController, animated: true)
         default:
             return
+        }
+    }
+}
+
+extension DetailViewController: WKYTPlayerViewDelegate {
+    func playerViewDidBecomeReady(_ playerView: WKYTPlayerView) {
+        UIView.animate(withDuration: 1.0, delay: 0.0) { [weak self] in
+            self?.playerVideo.alpha = 1
+        } completion: { [weak self] _ in
+            self?.playerVideo.playVideo()
         }
     }
 }

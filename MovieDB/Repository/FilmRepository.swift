@@ -8,11 +8,6 @@
 import Foundation
 
 final class FilmRepository: FilmRepositoryType {
-
-    typealias G = Genre
-    typealias M = DomainInfoFilm
-    typealias K = DetailInfoFilm
-
     private let api = APICaller.shared
     
     func getAllFilm(urlString: String, completion: @escaping (Result<[DomainInfoFilm]?, Error>) -> Void) {
@@ -76,6 +71,17 @@ final class FilmRepository: FilmRepositoryType {
                          queryValue: queryValue,
                          method: MethodRequest.get.rawValue,
                          expecting: FilmList.self) { result in
+            switch result {
+            case .success(let data):
+                completion(.success(data.results))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getVideo(urlString: String, completion: @escaping (Result<[Video]?, Error>) -> Void) {
+        api.request(urlString: urlString, method: MethodRequest.get.rawValue, expecting: VideoList.self) { result in
             switch result {
             case .success(let data):
                 completion(.success(data.results))

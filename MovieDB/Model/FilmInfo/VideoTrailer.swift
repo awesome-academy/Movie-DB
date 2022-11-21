@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 struct VideoList: Codable {
-    let videos: [Video]
+    let results: [Video]
 }
 
 struct Video: Codable {
@@ -18,6 +18,7 @@ struct Video: Codable {
     let site: String
     let size: Int
     let official: Bool
+    let type: String
 
     private enum CodingKeys: String, CodingKey {
         case key
@@ -25,5 +26,6 @@ struct Video: Codable {
         case site
         case size
         case official
+        case type
     }
 }

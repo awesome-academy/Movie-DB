@@ -13,7 +13,7 @@ final class CastCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var characterCastLabel: UILabel!
     @IBOutlet private weak var castView: UIView!
     @IBOutlet private weak var castImageView: CustomImageView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         configView()

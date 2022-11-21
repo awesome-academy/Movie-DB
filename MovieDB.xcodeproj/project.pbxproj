@@ -15,6 +15,8 @@
 		5D2C451B2913A780009157C6 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2C451A2913A77F009157C6 /* CoreDataManager.swift */; };
 		5D3E1311291CD1E9007968E5 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E1310291CD1E9007968E5 /* UIViewController+.swift */; };
 		5D6165A5292B0BD1007DEB11 /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6165A4292B0BD1007DEB11 /* CoreDataError.swift */; };
+		5D6165AA292B3441007DEB11 /* YoutubePlayer-in-WKWebView in Frameworks */ = {isa = PBXBuildFile; productRef = 5D6165A9292B3441007DEB11 /* YoutubePlayer-in-WKWebView */; };
+		5D6165AC292B6F2E007DEB11 /* TypeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6165AB292B6F2E007DEB11 /* TypeVideo.swift */; };
 		5D6B2534292336E500F8A42E /* CastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B2532292336E500F8A42E /* CastCollectionViewCell.swift */; };
 		5D6B2535292336E500F8A42E /* CastCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B2533292336E500F8A42E /* CastCollectionViewCell.xib */; };
 		5D6B2537292339DF00F8A42E /* HeaderTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B2536292339DF00F8A42E /* HeaderTitle.swift */; };
@@ -81,6 +83,7 @@
 		5D2C451A2913A77F009157C6 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		5D3E1310291CD1E9007968E5 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		5D6165A4292B0BD1007DEB11 /* CoreDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
+		5D6165AB292B6F2E007DEB11 /* TypeVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeVideo.swift; sourceTree = "<group>"; };
 		5D6B2532292336E500F8A42E /* CastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCollectionViewCell.swift; sourceTree = "<group>"; };
 		5D6B2533292336E500F8A42E /* CastCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CastCollectionViewCell.xib; sourceTree = "<group>"; };
 		5D6B2536292339DF00F8A42E /* HeaderTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTitle.swift; sourceTree = "<group>"; };
@@ -141,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D6165AA292B3441007DEB11 /* YoutubePlayer-in-WKWebView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +343,7 @@
 				5DE6CA442922460B007C93B7 /* IndicatorEnum.swift */,
 				5D6B2536292339DF00F8A42E /* HeaderTitle.swift */,
 				5D6165A4292B0BD1007DEB11 /* CoreDataError.swift */,
+				5D6165AB292B6F2E007DEB11 /* TypeVideo.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -450,6 +455,9 @@
 			dependencies = (
 			);
 			name = MovieDB;
+			packageProductDependencies = (
+				5D6165A9292B3441007DEB11 /* YoutubePlayer-in-WKWebView */,
+			);
 			productName = MovieDB;
 			productReference = 5D2C44E52913634E009157C6 /* MovieDB.app */;
 			productType = "com.apple.product-type.application";
@@ -478,6 +486,9 @@
 				Base,
 			);
 			mainGroup = 5D2C44DC2913634E009157C6;
+			packageReferences = (
+				5D6165A8292B3441007DEB11 /* XCRemoteSwiftPackageReference "YoutubePlayer-in-WKWebView" */,
+			);
 			productRefGroup = 5D2C44E62913634E009157C6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -559,6 +570,7 @@
 			files = (
 				5DA5B73A2918BE8B00AB2345 /* RequestErrorEnum.swift in Sources */,
 				5D2C450D2913A1AA009157C6 /* AppDelegate.swift in Sources */,
+				5D6165AC292B6F2E007DEB11 /* TypeVideo.swift in Sources */,
 				5DA5B7382918BD3300AB2345 /* APICaller.swift in Sources */,
 				5DA5B765291B80C300AB2345 /* RepositoryTypeManager.swift in Sources */,
 				5D2C44F32913634E009157C6 /* MovieDB.xcdatamodeld in Sources */,
@@ -820,6 +832,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5D6165A8292B3441007DEB11 /* XCRemoteSwiftPackageReference "YoutubePlayer-in-WKWebView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmhv/YoutubePlayer-in-WKWebView.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.3.8;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5D6165A9292B3441007DEB11 /* YoutubePlayer-in-WKWebView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D6165A8292B3441007DEB11 /* XCRemoteSwiftPackageReference "YoutubePlayer-in-WKWebView" */;
+			productName = "YoutubePlayer-in-WKWebView";
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		5D2C44F12913634E009157C6 /* MovieDB.xcdatamodeld */ = {
