@@ -20,7 +20,7 @@ final class DetailViewController: UIViewController {
     @IBOutlet private weak var backDropImageView: CustomImageView!
     
     private let headerId = "headerId"
-    private var filmID = -1
+    private var filmId: Int?
     private var film: DetailInfoFilm?
     private var genres = [Genre]()
     private var similarFilms = [DomainInfoFilm]()
@@ -28,13 +28,19 @@ final class DetailViewController: UIViewController {
     private let filmRepository = FilmRepository()
     private var network = Network.shared
     private let delayRunner = DelayedRunner.initWithDuration(seconds: 0.5)
+    private var listFavoriteFilmId = [Int]()
+    private var isFavorited = false
+    private let coreData = CoreDataManager.shared
+    static var identifier = "DetailViewController"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
         collectionView.collectionViewLayout = createLayout()
         initRegister()
+        setImageForFavoriteButton()
         initListGenre()
+        getListFavoriteFilm()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,12 +79,16 @@ final class DetailViewController: UIViewController {
                                 withReuseIdentifier: DetailFilmHeaderCollectionReusableView.identifier)
     }
     
-    func bindData(filmId: Int) {
-        filmID = filmId
+    func bindData(filmId: Int, isFavorited: Bool) {
+        self.filmId = filmId
+        self.isFavorited = isFavorited
     }
     
     private func initListActor() {
-        let url = network.getActorListOfFilmURL(id: filmID)
+        guard let filmId = filmId else {
+            return
+        }
+        let url = network.getActorListOfFilmURL(id: filmId)
         filmRepository.getListActorOfFilm(urlString: url) { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -99,7 +109,10 @@ final class DetailViewController: UIViewController {
     }
     
     private func initListFilmSimilar() {
-        let url = network.getSimilarFilmsURL(id: filmID)
+        guard let filmId = filmId else {
+            return
+        }
+        let url = network.getSimilarFilmsURL(id: filmId)
         filmRepository.getAllFilm(urlString: url) { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -137,7 +150,10 @@ final class DetailViewController: UIViewController {
     }
     
     private func initFilmData() {
-        let url = network.getDetailFilmURL(id: filmID)
+        guard let filmId = filmId else {
+            return
+        }
+        let url = network.getDetailFilmURL(id: filmId)
         filmRepository.getFilmDetail(urlString: url) { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -155,6 +171,20 @@ final class DetailViewController: UIViewController {
                     self.showAlert(title: "ERROR", messageError: error.localizedDescription)
                 }
             }
+        }
+    }
+    
+    private func getListFavoriteFilm() {
+        coreData.getFavoriteFilmList { [weak self] items, error in
+            guard let self = self else { return }
+            guard error == nil else {
+                print("Could not fetch. \(String(describing: error))")
+                return
+            }
+            self.listFavoriteFilmId = items.compactMap {
+                $0.value(forKey: "id") as? Int
+            }
+            self.collectionView.reloadData()
         }
     }
     
@@ -195,8 +225,52 @@ final class DetailViewController: UIViewController {
         return section
     }
     
+    private func setImageForFavoriteButton() {
+        favoriteImageView.image = UIImage(systemName: isFavorited ? "heart.fill" : "heart")
+        favoriteImageView.tintColor = isFavorited ? .red : .white
+    }
+    
+    private func changeImageForFavoriteButton() {
+        isFavorited.toggle()
+        setImageForFavoriteButton()
+    }
+    
     @IBAction private func backAction(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func favoriteTapAction(_ sender: Any) {
+        if isFavorited {
+            guard let filmId = filmId else {
+                return
+            }
+            coreData.deleteFilmFromCoreData(filmId: filmId) { [weak self] error in
+                guard let self = self else { return }
+                if let error = error {
+                    DispatchQueue.main.async {
+                        self.showAlert(title: "ERROR", messageError: error.localizedDescription)
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.changeImageForFavoriteButton()
+                }
+            }
+        } else {
+            coreData.addFilmToCoreDataByDetailFilm(filmInfo: film) { [weak self] error in
+                guard let self = self else { return }
+                if let error = error {
+                    DispatchQueue.main.async {
+                        self.showAlert(title: "ERROR", messageError: error.localizedDescription)
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.changeImageForFavoriteButton()
+                }
+            }
+        }
+        
     }
 }
 
@@ -247,12 +321,14 @@ extension DetailViewController: UICollectionViewDataSource {
             cell.bindData(actor: actors[indexPath.row])
             return cell
         }
+        let film = similarFilms[indexPath.row]
+        let isFavorited = listFavoriteFilmId.contains(where: { $0 == film.id })
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: HorizontalCustomCollectionViewCell.identifier,
             for: indexPath) as? HorizontalCustomCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.bindData(film: similarFilms[indexPath.row])
+        cell.bindData(film: film, isFavorited: isFavorited)
         return cell
     }
 }
@@ -261,13 +337,18 @@ extension DetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.section {
         case 1:
-            let storyboard = UIStoryboard(name: "DetailFilmViewController", bundle: nil)
+            let storyboard = UIStoryboard(name: DetailViewController.identifier, bundle: nil)
             guard let filmDetailViewController = storyboard.instantiateViewController(
-                withIdentifier: "DetailViewController") as? DetailViewController else {
+                withIdentifier: DetailViewController.identifier) as? DetailViewController else {
                 return
             }
+            let film = similarFilms[indexPath.row]
+            let isFavorited = listFavoriteFilmId.contains(where: { $0 == film.id })
             filmDetailViewController.hidesBottomBarWhenPushed = true
-            filmDetailViewController.bindData(filmId: similarFilms[indexPath.row].id)
+            guard let filmId = film.id else {
+                return
+            }
+            filmDetailViewController.bindData(filmId: filmId, isFavorited: isFavorited)
             self.navigationController?.pushViewController(filmDetailViewController, animated: true)
         default:
             return

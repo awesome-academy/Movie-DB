@@ -17,11 +17,14 @@ final class SearchViewController: UIViewController {
     
     private var films = [DomainInfoFilm]()
     private var genres = [Genre]()
+    private var genresName = [String]()
     private let filmRepository = FilmRepository()
     private var network = Network.shared
-    private var selectedGenre: Genre?
+    private var selectedGenre: String?
     private var oldIndexPathItemSelected: IndexPath?
     private let delayRunner = DelayedRunner.initWithDuration(seconds: 0.5)
+    private var listFavoriteFilmId = [Int]()
+    private let coreData = CoreDataManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +37,7 @@ final class SearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        getListFavoriteFilm()
     }
     
     private func configView() {
@@ -86,15 +90,16 @@ final class SearchViewController: UIViewController {
     }
     
     private func initListGenre() {
-        let firstGenre = Genre(id: -1, name: "All")
-        genres.append(firstGenre)
+        let firstGenre = String("All")
+        genresName.append(firstGenre)
         let url = network.getGenresURL()
         filmRepository.getListGenre(urlString: url) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):
                 self.genres.append(contentsOf: data ?? [])
-                self.selectedGenre = self.genres[0]
+                self.genresName.append(contentsOf: self.genres.map { $0.name })
+                self.selectedGenre = self.genresName[0]
                 self.initListFilm()
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -131,6 +136,55 @@ final class SearchViewController: UIViewController {
             }
         }
     }
+    
+    private func getListFavoriteFilm() {
+        coreData.getFavoriteFilmList { [weak self] items, error in
+            guard let self = self else { return }
+            guard error == nil else {
+                print("Could not fetch. \(String(describing: error))")
+                return
+            }
+            self.listFavoriteFilmId = items.compactMap {
+                $0.value(forKey: "id") as? Int
+            }
+            self.collectionView.reloadData()
+        }
+    }
+    
+    private func handleFavoriteAction(isFavorited: Bool, film: DomainInfoFilm, indexPath: IndexPath) {
+        guard let filmId = film.id else {
+            return
+        }
+        if isFavorited {
+            self.coreData.deleteFilmFromCoreData(filmId: filmId) { [weak self] error in
+                guard let self = self else { return }
+                if let error = error {
+                    DispatchQueue.main.async {
+                        self.showAlert(title: "ERROR", messageError: error.localizedDescription)
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.listFavoriteFilmId.removeAll(where: { $0 == film.id })
+                    self.collectionView.reloadItems(at: [indexPath])
+                }
+            }
+        } else {
+            self.coreData.addFilmToCoreData(filmInfo: film) { [weak self] error in
+                guard let self = self else { return }
+                if let error = error {
+                    DispatchQueue.main.async {
+                        self.showAlert(title: "ERROR", messageError: error.localizedDescription)
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.listFavoriteFilmId.append(filmId)
+                    self.collectionView.reloadItems(at: [indexPath])
+                }
+            }
+        }
+    }
 }
 
 extension SearchViewController: UICollectionViewDataSource {
@@ -140,7 +194,7 @@ extension SearchViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return section == 0 ? genres.count : films.count
+        return section == 0 ? genresName.count : films.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -151,23 +205,30 @@ extension SearchViewController: UICollectionViewDataSource {
                 for: indexPath) as? SearchCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            let selected = genres[indexPath.row].id == selectedGenre?.id ?? -1
-            cell.bindData(genre: genres[indexPath.row], isSelected: selected)
+            let selected = genresName[indexPath.row] == selectedGenre
+            cell.bindData(genre: genresName[indexPath.row], isSelected: selected)
             return cell
         }
+        let film = films[indexPath.row]
+        let isFavorited = listFavoriteFilmId.contains(where: { $0 == film.id })
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: HorizontalCustomCollectionViewCell.identifier,
             for: indexPath) as? HorizontalCustomCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.bindData(film: films[indexPath.row])
+        cell.bindData(film: film, isFavorited: isFavorited)
+        cell.changeFavorite { [weak self] _ in
+            guard let self = self else { return }
+            self.handleFavoriteAction(isFavorited: isFavorited, film: film, indexPath: indexPath)
+        }
         return cell
     }
 }
 
 extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0:
             reloadGenresCollectionView(indexPath: indexPath)
             searchTextField.text?.removeAll()
             searchTextField.resignFirstResponder()
@@ -178,9 +239,23 @@ extension SearchViewController: UICollectionViewDelegate {
                                           queryKey: "with_genres",
                                           queryValue: indexPath.row == 0
                                           ? ""
-                                          : String(self.genres[indexPath.row].id))
+                                          : String(self.genres[indexPath.row - 1].id))
                 }
             }
+        default:
+            let storyboard = UIStoryboard(name: DetailViewController.identifier, bundle: nil)
+            guard let filmDetailViewController = storyboard.instantiateViewController(
+                withIdentifier: DetailViewController.identifier) as? DetailViewController else {
+                return
+            }
+            let film = films[indexPath.row]
+            let isFavorited = listFavoriteFilmId.contains(where: { $0 == film.id })
+            filmDetailViewController.hidesBottomBarWhenPushed = true
+            guard let filmId = film.id else {
+                return
+            }
+            filmDetailViewController.bindData(filmId: filmId, isFavorited: isFavorited)
+            self.navigationController?.pushViewController(filmDetailViewController, animated: true)
         }
     }
 }
@@ -220,7 +295,7 @@ extension SearchViewController {
     }
     
     private func reloadGenresCollectionView(indexPath: IndexPath) {
-        selectedGenre = genres[indexPath.row]
+        selectedGenre = genresName[indexPath.row]
         collectionView.reloadItems(at: [indexPath])
         if let oldIndexPath = oldIndexPathItemSelected {
             collectionView.reloadItems(at: [oldIndexPath])
@@ -232,5 +307,4 @@ extension SearchViewController {
             animated: true
         )
     }
-
 }

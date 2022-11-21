@@ -6,18 +6,19 @@
 //
 
 import Foundation
+import CoreData
 
 struct FilmList: Codable {
     let results: [DomainInfoFilm]
 }
 
 final class DomainInfoFilm: Codable {
-    let id: Int
-    let title: String
+    let id: Int?
+    let title: String?
     let posterImageURL: String?
-    let isAdult: Bool
-    let voteAverage: Double
-    let genre: [Int]
+    var isAdult: Bool?
+    var voteAverage: Double?
+    var genre: [Int]?
     var genres: [String] = []
     
     private enum CodingKeys: String, CodingKey {
@@ -27,6 +28,17 @@ final class DomainInfoFilm: Codable {
         case isAdult = "adult"
         case voteAverage = "vote_average"
         case genre = "genre_ids"
+    }
+    
+    init(item: NSManagedObject) {
+        self.id = item.value(forKey: "id") as? Int
+        self.title = item.value(forKey: "nameFilm") as? String
+        self.posterImageURL = item.value(forKey: "imageUrlString") as? String
+        guard let genresString = item.value(forKey: "genres") as? String else {
+            return
+        }
+        let genreArray = genresString.components(separatedBy: " • ")
+        self.genres = genreArray
     }
     
     var genresString: String {

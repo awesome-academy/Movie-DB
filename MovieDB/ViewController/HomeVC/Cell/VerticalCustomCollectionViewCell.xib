@@ -33,6 +33,38 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xao-mU-aYk">
+                        <rect key="frame" x="241" y="16" width="30" height="30"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gKt-k8-mSJ">
+                                <rect key="frame" x="5" y="6.9999999999999982" width="20" height="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="NgG-2P-clf"/>
+                                    <constraint firstAttribute="height" constant="20" id="kUD-j3-vC7"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QjV-cj-qrQ">
+                                <rect key="frame" x="-22.333333333333343" y="-2.3333333333333339" width="75" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="favoriteTapAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="LoA-sp-J7T"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="38U-go-iRA"/>
+                            <constraint firstItem="QjV-cj-qrQ" firstAttribute="centerY" secondItem="xao-mU-aYk" secondAttribute="centerY" id="3NW-jb-xNP"/>
+                            <constraint firstItem="QjV-cj-qrQ" firstAttribute="height" secondItem="xao-mU-aYk" secondAttribute="height" multiplier="1.16667" id="a0z-3u-6Je"/>
+                            <constraint firstItem="QjV-cj-qrQ" firstAttribute="centerX" secondItem="xao-mU-aYk" secondAttribute="centerX" id="a6b-cQ-cGZ"/>
+                            <constraint firstAttribute="width" constant="30" id="cEk-9J-zon"/>
+                            <constraint firstItem="gKt-k8-mSJ" firstAttribute="centerY" secondItem="xao-mU-aYk" secondAttribute="centerY" id="inX-uP-nFo"/>
+                            <constraint firstItem="QjV-cj-qrQ" firstAttribute="width" secondItem="xao-mU-aYk" secondAttribute="width" multiplier="2.5" id="pR1-NO-8SU"/>
+                            <constraint firstItem="gKt-k8-mSJ" firstAttribute="centerX" secondItem="xao-mU-aYk" secondAttribute="centerX" id="yhl-DO-lUK"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -45,11 +77,15 @@
                 <constraint firstItem="8pE-rB-6iw" firstAttribute="leading" secondItem="KE9-Mn-IeM" secondAttribute="leading" constant="16" id="EhL-5C-P9N"/>
                 <constraint firstItem="KE9-Mn-IeM" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="LLg-8o-1Zp"/>
                 <constraint firstItem="8pE-rB-6iw" firstAttribute="top" secondItem="TIW-1q-mzI" secondAttribute="bottom" constant="8" id="SVF-Qj-FC8"/>
+                <constraint firstAttribute="trailing" secondItem="xao-mU-aYk" secondAttribute="trailing" constant="16" id="T94-Zq-8HK"/>
                 <constraint firstItem="TIW-1q-mzI" firstAttribute="leading" secondItem="KE9-Mn-IeM" secondAttribute="leading" constant="16" id="nxr-ge-xSd"/>
+                <constraint firstItem="xao-mU-aYk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="poy-5f-5YL"/>
                 <constraint firstAttribute="bottom" secondItem="8pE-rB-6iw" secondAttribute="bottom" constant="16" id="rDG-Fc-YgY"/>
             </constraints>
             <size key="customSize" width="287" height="194"/>
             <connections>
+                <outlet property="favoriteImageView" destination="gKt-k8-mSJ" id="2t9-Q5-aMJ"/>
+                <outlet property="favoriteView" destination="xao-mU-aYk" id="LkW-o3-l57"/>
                 <outlet property="genreLabel" destination="8pE-rB-6iw" id="LWz-up-0ue"/>
                 <outlet property="nameFilmLabel" destination="TIW-1q-mzI" id="GUh-m6-aye"/>
                 <outlet property="posterFilmImageView" destination="KE9-Mn-IeM" id="K87-Xl-ehT"/>
@@ -57,4 +93,7 @@
             <point key="canvasLocation" x="313.07692307692309" y="-19.194312796208528"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
+    </resources>
 </document>
