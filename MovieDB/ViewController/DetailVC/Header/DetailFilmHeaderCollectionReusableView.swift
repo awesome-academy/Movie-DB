@@ -23,17 +23,23 @@ final class DetailFilmHeaderCollectionReusableView: UICollectionReusableView {
     @IBOutlet private weak var durationLabel: UILabel!
     @IBOutlet private weak var overviewLabel: UILabel!
     @IBOutlet private weak var genreLabel: UILabel!
+    private var tapPlayVideoActionCallBack: ((String) -> Void)?
+    private var videoKey = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
         configView()
     }
     
+    func playVideo(_ callBack: @escaping((String) -> Void)) {
+        tapPlayVideoActionCallBack = callBack
+    }
+    
     private func configView() {
         playMovieView.makeCornerRadius(10)
     }
 
-    func bindData(film: DetailInfoFilm, title: String) {
+    func bindData(film: DetailInfoFilm, title: String, videoKey: String) {
         titleLabel.text = title
         filmNameLabel.text = film.title
         voteAverageLabel.text = String("\(film.voteAverage)/10")
@@ -42,6 +48,7 @@ final class DetailFilmHeaderCollectionReusableView: UICollectionReusableView {
         genreLabel.text = film.genresString
         overviewLabel.text = film.overview
         durationLabel.text = film.runtime.changeToDurationString()
+        self.videoKey = videoKey
     }
     
     private func getAgeLimitString(isAdult: Bool) -> String {
@@ -49,5 +56,9 @@ final class DetailFilmHeaderCollectionReusableView: UICollectionReusableView {
             return AgeLimitTitle.forAdult.rawValue
         }
         return AgeLimitTitle.forAll.rawValue
+    }
+    
+    @IBAction func playVideoAction(_ sender: Any) {
+        tapPlayVideoActionCallBack?(videoKey)
     }
 }

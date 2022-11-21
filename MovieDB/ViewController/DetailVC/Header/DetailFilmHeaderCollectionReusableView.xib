@@ -18,7 +18,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="457" height="395"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="749" text="Black Adam" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWg-Yp-2Vj">
-                            <rect key="frame" x="16" y="16" width="425" height="28.666666666666671"/>
+                            <rect key="frame" x="16" y="16" width="132.33333333333334" height="28.666666666666671"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -81,15 +81,27 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yee-AA-l13">
+                                    <rect key="frame" x="175" y="6.6666666666666572" width="75" height="35"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain"/>
+                                    <connections>
+                                        <action selector="playVideoAction:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="v3r-f2-3ge"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.015686274510000001" green="0.77647058820000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="bBW-tS-3CF" firstAttribute="leading" secondItem="gP2-Ad-jHh" secondAttribute="trailing" constant="8" id="5iC-vK-xuq"/>
                                 <constraint firstItem="bBW-tS-3CF" firstAttribute="centerX" secondItem="w7f-nZ-1Bd" secondAttribute="centerX" constant="8" id="7h0-Dw-7MK"/>
                                 <constraint firstItem="bBW-tS-3CF" firstAttribute="centerY" secondItem="w7f-nZ-1Bd" secondAttribute="centerY" id="C3o-s2-Pe0"/>
+                                <constraint firstItem="yee-AA-l13" firstAttribute="height" secondItem="w7f-nZ-1Bd" secondAttribute="height" multiplier="0.729167" id="DYh-pT-DoP"/>
                                 <constraint firstAttribute="height" constant="48" id="MCo-N3-Srs"/>
+                                <constraint firstItem="yee-AA-l13" firstAttribute="centerY" secondItem="w7f-nZ-1Bd" secondAttribute="centerY" id="Qlx-h6-acw"/>
+                                <constraint firstItem="yee-AA-l13" firstAttribute="centerX" secondItem="w7f-nZ-1Bd" secondAttribute="centerX" id="SGn-nE-jMc"/>
                                 <constraint firstAttribute="bottom" secondItem="gP2-Ad-jHh" secondAttribute="bottom" constant="6" id="ZAE-1h-5Q9"/>
                                 <constraint firstItem="gP2-Ad-jHh" firstAttribute="top" secondItem="w7f-nZ-1Bd" secondAttribute="top" constant="8.0000000000000018" id="wnD-Tk-XP4"/>
+                                <constraint firstItem="yee-AA-l13" firstAttribute="width" secondItem="w7f-nZ-1Bd" secondAttribute="width" multiplier="0.176471" id="yht-pw-ZPi"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSz-oj-c8F">
@@ -120,7 +132,6 @@
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="xBg-pT-qkv" firstAttribute="centerY" secondItem="Cjl-FG-ENU" secondAttribute="centerY" id="3XP-Bs-Mrx"/>
-                        <constraint firstAttribute="trailing" secondItem="eWg-Yp-2Vj" secondAttribute="trailing" constant="16" id="49F-jt-3jg"/>
                         <constraint firstItem="Att-Yw-Dhj" firstAttribute="leading" secondItem="Zzs-il-hLJ" secondAttribute="leading" constant="16" id="4ey-oy-K5j"/>
                         <constraint firstItem="Ba0-Cl-NjU" firstAttribute="centerY" secondItem="xBg-pT-qkv" secondAttribute="centerY" id="5Pj-4p-DnZ"/>
                         <constraint firstItem="e87-Pv-WrQ" firstAttribute="leading" secondItem="Zzs-il-hLJ" secondAttribute="leading" constant="16" id="6Kg-dK-9e2"/>

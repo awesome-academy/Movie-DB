@@ -16,4 +16,5 @@ protocol FilmRepositoryType {
                          queryKey: String,
                          queryValue: String,
                          completion: @escaping (Result<[DomainInfoFilm]?, Error>) -> Void)
+    func getVideo(urlString: String, completion: @escaping (Result<[Video]?, Error>) -> Void)
 }
