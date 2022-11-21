@@ -17,8 +17,8 @@ final class SearchCollectionViewCell: UICollectionViewCell {
         configView()
     }
     
-    func bindData(genre: Genre, isSelected: Bool) {
-        categoryTitleLabel.text = genre.name
+    func bindData(genre: String, isSelected: Bool) {
+        categoryTitleLabel.text = genre
         categoryView.backgroundColor = isSelected ? .yellow : .clear
         categoryTitleLabel.textColor = isSelected ? .black : .white
     }

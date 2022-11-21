@@ -16,7 +16,9 @@ final class HomeViewController: UIViewController {
     private var genres = [Genre]()
     private var filmSections = [FilmSection]()
     private let filmRepository = FilmRepository()
+    private var listFavoriteFilmId = [Int]()
     private let network = Network.shared
+    private let coreData = CoreDataManager.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,7 @@ final class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        getListFavoriteFilm()
     }
     
     private func registerInit() {
@@ -130,6 +133,20 @@ final class HomeViewController: UIViewController {
             }
         }
     }
+    
+    private func getListFavoriteFilm() {
+        coreData.getFavoriteFilmList { [weak self] items, error in
+            guard let self = self else { return }
+            guard error == nil else {
+                print("Could not fetch. \(String(describing: error))")
+                return
+            }
+            self.listFavoriteFilmId = items.compactMap {
+                $0.value(forKey: "id") as? Int
+            }
+            self.collectionView.reloadData()
+        }
+    }
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (sectionNumber, _) -> NSCollectionLayoutSection? in
@@ -184,6 +201,41 @@ final class HomeViewController: UIViewController {
             }
         }
     }
+    
+    private func handleFavoriteAction(isFavorited: Bool, film: DomainInfoFilm) {
+        guard let filmId = film.id else {
+            return
+        }
+        if isFavorited {
+            coreData.deleteFilmFromCoreData(filmId: filmId) { [weak self] error in
+                guard let self = self else { return }
+                if let error = error {
+                    DispatchQueue.main.async {
+                        self.showAlert(title: "ERROR", messageError: error.localizedDescription)
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.listFavoriteFilmId.removeAll(where: { $0 == film.id })
+                    self.collectionView.reloadData()
+                }
+            }
+        } else {
+            self.coreData.addFilmToCoreData(filmInfo: film) { [weak self] error in
+                guard let self = self else { return }
+                if let error = error {
+                    DispatchQueue.main.async {
+                        self.showAlert(title: "ERROR", messageError: error.localizedDescription)
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.listFavoriteFilmId.append(filmId)
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+    }
 }
 
 extension HomeViewController: UICollectionViewDataSource {
@@ -210,6 +262,8 @@ extension HomeViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let film = filmSections[indexPath.section].films[indexPath.row]
+        let isFavorited = listFavoriteFilmId.contains(where: { $0 == film.id })
         switch indexPath.section {
         case 0:
             guard let cell = collectionView.dequeueReusableCell(
@@ -217,7 +271,11 @@ extension HomeViewController: UICollectionViewDataSource {
                 for: indexPath) as? VerticalCustomCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.bindData(film: filmSections[indexPath.section].films[indexPath.row])
+            cell.bindData(film: film, isFavorited: isFavorited)
+            cell.changeFavorite { [weak self] _ in
+                guard let self = self else { return }
+                self.handleFavoriteAction(isFavorited: isFavorited, film: film)
+            }
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(
@@ -225,7 +283,11 @@ extension HomeViewController: UICollectionViewDataSource {
                 for: indexPath) as? VerticalCustomCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.bindData(film: filmSections[indexPath.section].films[indexPath.item])
+            cell.bindData(film: film, isFavorited: isFavorited)
+            cell.changeFavorite { [weak self] _ in
+                guard let self = self else { return }
+                self.handleFavoriteAction(isFavorited: isFavorited, film: film)
+            }
             return cell
         case 2:
             guard let cell = collectionView.dequeueReusableCell(
@@ -233,7 +295,11 @@ extension HomeViewController: UICollectionViewDataSource {
                 for: indexPath) as? HorizontalCustomCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.bindData(film: filmSections[indexPath.section].films[indexPath.row])
+            cell.bindData(film: film, isFavorited: isFavorited)
+            cell.changeFavorite { [weak self] _ in
+                guard let self = self else { return }
+                self.handleFavoriteAction(isFavorited: isFavorited, film: film)
+            }
             return cell
         default:
             guard let cell = collectionView.dequeueReusableCell(
@@ -241,7 +307,11 @@ extension HomeViewController: UICollectionViewDataSource {
                 for: indexPath) as? HorizontalCustomCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.bindData(film: filmSections[indexPath.section].films[indexPath.row])
+            cell.bindData(film: film, isFavorited: isFavorited)
+            cell.changeFavorite { [weak self] _ in
+                guard let self = self else { return }
+                self.handleFavoriteAction(isFavorited: isFavorited, film: film)
+            }
             return cell
         }
     }
@@ -249,13 +319,18 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "DetailFilmViewController", bundle: nil)
+        let storyboard = UIStoryboard(name: DetailViewController.identifier, bundle: nil)
         guard let filmDetailViewController = storyboard.instantiateViewController(
-            withIdentifier: "DetailViewController") as? DetailViewController else {
+            withIdentifier: DetailViewController.identifier) as? DetailViewController else {
             return
         }
+        let film = filmSections[indexPath.section].films[indexPath.row]
+        let isFavorited = listFavoriteFilmId.contains(where: { $0 == film.id })
         filmDetailViewController.hidesBottomBarWhenPushed = true
-        filmDetailViewController.bindData(filmId: filmSections[indexPath.section].films[indexPath.row].id)
+        guard let filmId = film.id else {
+            return
+        }
+        filmDetailViewController.bindData(filmId: filmId, isFavorited: isFavorited)
         self.navigationController?.pushViewController(filmDetailViewController, animated: true)
     }
 }

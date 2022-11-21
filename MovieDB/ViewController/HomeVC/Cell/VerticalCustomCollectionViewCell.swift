@@ -12,14 +12,28 @@ final class VerticalCustomCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet private weak var nameFilmLabel: UILabel!
     @IBOutlet private weak var genreLabel: UILabel!
-    @IBOutlet weak var posterFilmImageView: CustomImageView!
+    @IBOutlet private weak var posterFilmImageView: CustomImageView!
+    @IBOutlet private weak var favoriteImageView: UIImageView!
+    @IBOutlet private weak var favoriteView: UIView!
+    
+    private var isFavorited = false
+    private let coreData = CoreDataManager.shared
+    private var filmInfo: DomainInfoFilm?
+    private var tapFavoriteActionCallBack: ((Int) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         configView()
     }
+    
+    func changeFavorite(_ callBack: @escaping((Int) -> Void)) {
+        tapFavoriteActionCallBack = callBack
+    }
 
-    func bindData(film: DomainInfoFilm) {
+    func bindData(film: DomainInfoFilm, isFavorited: Bool) {
+        filmInfo = film
+        self.isFavorited = isFavorited
+        setImageForFavoriteButton()
         nameFilmLabel.text = film.title
         genreLabel.text = film.genresString
         if let urlString = film.posterImageURL {
@@ -28,7 +42,25 @@ final class VerticalCustomCollectionViewCell: UICollectionViewCell {
     }
 
     private func configView() {
-        self.clipsToBounds = true
-        self.layer.cornerRadius = 10
+        self.makeCornerRadius(20)
+        favoriteView.makeCornerRadius(10)
+    }
+    
+    private func setImageForFavoriteButton() {
+        favoriteImageView.image = UIImage(systemName: isFavorited ? "heart.fill" : "heart")
+        favoriteImageView.tintColor = isFavorited ? .red : .white
+    }
+    
+    private func changeImageForFavoriteButton() {
+        isFavorited.toggle()
+        setImageForFavoriteButton()
+    }
+    
+    @IBAction private func favoriteTapAction(_ sender: Any) {
+        guard let filmId = filmInfo?.id else {
+            return
+        }
+        changeImageForFavoriteButton()
+        tapFavoriteActionCallBack?(filmId)
     }
 }

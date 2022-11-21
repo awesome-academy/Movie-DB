@@ -67,16 +67,28 @@
                                             <constraint firstAttribute="height" constant="20" id="zI5-Pb-FtI"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdJ-Br-cyh">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain"/>
+                                        <connections>
+                                            <action selector="favoriteTapAction:" destination="LmP-S6-5NL" eventType="touchUpInside" id="8iA-8n-paY"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="0SK-48-Ywf"/>
+                                    <constraint firstItem="gdJ-Br-cyh" firstAttribute="width" secondItem="uda-7y-ILk" secondAttribute="width" id="4AP-N6-Fc0"/>
                                     <constraint firstItem="hO4-jB-4Bd" firstAttribute="leading" secondItem="uda-7y-ILk" secondAttribute="leading" constant="5" id="ARK-4a-QS1"/>
                                     <constraint firstItem="hO4-jB-4Bd" firstAttribute="centerX" secondItem="uda-7y-ILk" secondAttribute="centerX" id="B8P-fT-edR"/>
                                     <constraint firstAttribute="height" constant="30" id="HMr-YO-Oa7"/>
                                     <constraint firstAttribute="width" constant="30" id="Nuz-0g-nXu"/>
                                     <constraint firstItem="hO4-jB-4Bd" firstAttribute="centerY" secondItem="uda-7y-ILk" secondAttribute="centerY" id="OMX-oX-g1c"/>
+                                    <constraint firstItem="gdJ-Br-cyh" firstAttribute="centerX" secondItem="uda-7y-ILk" secondAttribute="centerX" id="RLW-1t-4gf"/>
                                     <constraint firstAttribute="height" constant="30" id="a6W-2a-l1F"/>
+                                    <constraint firstItem="gdJ-Br-cyh" firstAttribute="height" secondItem="uda-7y-ILk" secondAttribute="height" id="fri-rv-VwR"/>
+                                    <constraint firstItem="gdJ-Br-cyh" firstAttribute="centerY" secondItem="uda-7y-ILk" secondAttribute="centerY" id="vrB-i8-e96"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="u8F-t6-UOQ">

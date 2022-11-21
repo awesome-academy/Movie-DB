@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21279" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="FilmEntity" representedClassName="FilmEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="genreID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="genres" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="imageUrlString" optional="YES" attributeType="String"/>
         <attribute name="nameFilm" optional="YES" attributeType="String"/>
-        <relationship name="genreRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GenreEntity"/>
-    </entity>
-    <entity name="GenreEntity" representedClassName="GenreEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="genreID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="genreName" optional="YES" attributeType="String"/>
-        <relationship name="genreRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FilmEntity"/>
     </entity>
 </model>
