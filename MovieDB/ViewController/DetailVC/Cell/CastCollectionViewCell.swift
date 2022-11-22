@@ -22,7 +22,7 @@ final class CastCollectionViewCell: UICollectionViewCell {
     func bindData(actor: Actor) {
         nameCastLabel.text = actor.name
         characterCastLabel.text = actor.character
-        castImageView.setImage(url: actor.profileImageURL ?? "")
+        castImageView.loadImageUsingUrlString(urlString: actor.profileImageURL ?? "")
     }
     
     private func configView() {

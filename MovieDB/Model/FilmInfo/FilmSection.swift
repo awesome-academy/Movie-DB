@@ -9,5 +9,6 @@ import Foundation
 
 struct FilmSection {
     var titleSection = ""
+    var categorySection: CategoryPath?
     var films = [DomainInfoFilm]()
 }

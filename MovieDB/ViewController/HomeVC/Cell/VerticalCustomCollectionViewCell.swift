@@ -37,7 +37,7 @@ final class VerticalCustomCollectionViewCell: UICollectionViewCell {
         nameFilmLabel.text = film.title
         genreLabel.text = film.genresString
         if let urlString = film.posterImageURL {
-            posterFilmImageView.setImage(url: urlString)
+            posterFilmImageView.loadImageUsingUrlString(urlString: urlString)
         }
     }
 

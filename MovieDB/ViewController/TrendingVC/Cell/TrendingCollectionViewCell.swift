@@ -40,6 +40,9 @@ final class TrendingCollectionViewCell: UICollectionViewCell {
     }
 
     func bindData(film: DomainInfoFilm, isFavorited: Bool, rank: Int) {
+        if let urlString = film.posterImageURL {
+            self.posterImageView.loadImageUsingUrlString(urlString: urlString)
+        }
         filmInfo = film
         self.isFavorited = isFavorited
         setImageForFavoriteButton()
@@ -49,9 +52,6 @@ final class TrendingCollectionViewCell: UICollectionViewCell {
         
         ageLabel.text = getAgeLimitString(isAdult: film.isAdult ?? false)
         genresLabel.text = film.genresString
-        if let urlString = film.posterImageURL {
-            posterImageView.setImage(url: urlString)
-        }
         overviewLabel.text = film.overview
         if let voteAverage = film.voteAverage {
             voteAverageLabel.text = String(format: "%.1f", voteAverage)

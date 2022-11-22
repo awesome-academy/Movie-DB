@@ -37,7 +37,7 @@ final class HorizontalCustomCollectionViewCell: UICollectionViewCell {
         nameFilmLabel.text = film.title
         genreFilmLabel.text = film.genresString
         if let urlString = film.posterImageURL {
-            posterFilmImageView.setImage(url: urlString)
+            posterFilmImageView.loadImageUsingUrlString(urlString: urlString)
         }
     }
 

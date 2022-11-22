@@ -358,7 +358,7 @@ extension DetailViewController: UICollectionViewDataSource {
                 for: indexPath) as? HeaderCollectionReusableView else {
                 return UICollectionReusableView()
             }
-            headerCell.bindData(title: HeaderTitle.moreLike.rawValue, isShowViewAll: false)
+            headerCell.bindData(title: HeaderTitle.moreLike.rawValue, isShowViewAll: false, category: nil)
             return headerCell
         }
     }
