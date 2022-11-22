@@ -41,7 +41,7 @@ final class DetailViewController: UIViewController {
         collectionView.collectionViewLayout = createLayout()
         initRegister()
         setImageForFavoriteButton()
-        initListGenre()
+        loadData()
         getListFavoriteFilm()
         playerVideo.alpha = 0
         playerVideo.tintColor = .clear
@@ -94,6 +94,28 @@ final class DetailViewController: UIViewController {
     func bindData(filmId: Int, isFavorited: Bool) {
         self.filmId = filmId
         self.isFavorited = isFavorited
+    }
+    
+    private func loadData() {
+        handleIndicator(.show)
+        collectionView.isHidden = true
+        favoriteButtonView.isHidden = true
+
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        self.initListGenre()
+        dispatchGroup.leave()
+        
+        dispatchGroup.notify(queue: .main, execute: { [weak self] in
+            guard let self = self else { return }
+            self.delayRunner.run {
+                self.handleIndicator(.hide)
+                self.collectionView.isHidden = false
+                self.favoriteButtonView.isHidden = false
+            }
+        }
+        )
     }
     
     private func initListActor() {

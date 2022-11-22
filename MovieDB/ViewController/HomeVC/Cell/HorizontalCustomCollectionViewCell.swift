@@ -19,7 +19,7 @@ final class HorizontalCustomCollectionViewCell: UICollectionViewCell {
     private var isFavorited = false
     private let coreData = CoreDataManager.shared
     private var filmInfo: DomainInfoFilm?
-    private var tapFavoriteActionCallBack: ((Int) -> Void)?
+    private var didTapFavoriteAction: ((Int) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,7 +27,7 @@ final class HorizontalCustomCollectionViewCell: UICollectionViewCell {
     }
     
     func changeFavorite(_ callBack: @escaping((Int) -> Void)) {
-        tapFavoriteActionCallBack = callBack
+        didTapFavoriteAction = callBack
     }
 
     func bindData(film: DomainInfoFilm, isFavorited: Bool) {
@@ -61,6 +61,6 @@ final class HorizontalCustomCollectionViewCell: UICollectionViewCell {
             return
         }
         changeImageForFavoriteButton()
-        tapFavoriteActionCallBack?(filmId)
+        didTapFavoriteAction?(filmId)
     }
 }

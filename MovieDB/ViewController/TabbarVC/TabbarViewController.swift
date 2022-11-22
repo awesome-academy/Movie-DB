@@ -25,7 +25,7 @@ final class TabbarViewController: UITabBarController {
             configSubNavigationController(viewController: SearchViewController(),
                                           item: TabbarItem.category.item,
                                           title: TabbarItemTitle.category.rawValue),
-            configSubNavigationController(viewController: ComingSoonViewController(),
+            configSubNavigationController(viewController: TrendingViewController(),
                                           item: TabbarItem.trending.item,
                                           title: TabbarItemTitle.trending.rawValue),
             configSubNavigationController(viewController: FavoriteViewController(),
