@@ -19,12 +19,13 @@ final class HomeViewController: UIViewController {
     private var listFavoriteFilmId = [Int]()
     private let network = Network.shared
     private let coreData = CoreDataManager.shared
+    private let delayRunner = DelayedRunner.initWithDuration(seconds: 0.5)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         registerInit()
         collectionView.collectionViewLayout = createLayout()
-        initListGenre()
+        loadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +57,30 @@ final class HomeViewController: UIViewController {
                                 forSupplementaryViewOfKind: headerId,
                                 withReuseIdentifier: HeaderCollectionReusableView.identifier)
     }
+    
+    private func loadData() {
+        handleIndicator(.show)
+        collectionView.isHidden = true
+
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        self.initListGenre()
+        dispatchGroup.leave()
+        
+        dispatchGroup.enter()
+        self.initListFilm()
+        dispatchGroup.leave()
+        
+        dispatchGroup.notify(queue: .main, execute: { [weak self] in
+            guard let self = self else { return }
+            self.delayRunner.run {
+                self.handleIndicator(.hide)
+                self.collectionView.isHidden = false
+            }
+        }
+        )
+    }
 
     private func initListGenre() {
         let url = network.getGenresURL()
@@ -64,7 +89,6 @@ final class HomeViewController: UIViewController {
             switch result {
             case .success(let data):
                 self.genres = data ?? []
-                self.initListFilm()
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.showAlert(title: "ERROR", messageError: error.localizedDescription)

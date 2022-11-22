@@ -27,13 +27,12 @@ final class FavoriteViewController: UIViewController {
         configView()
         registerInit()
         collectionView.collectionViewLayout = createLayout()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        fetchFilm()
+        loadData()
     }
     
     private func configView() {
@@ -62,6 +61,26 @@ final class FavoriteViewController: UIViewController {
             let section = NSCollectionLayoutSection(group: group)
             return section
         }
+    }
+    
+    private func loadData() {
+        handleIndicator(.show)
+        collectionView.isHidden = true
+
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        self.fetchFilm()
+        dispatchGroup.leave()
+        
+        dispatchGroup.notify(queue: .main, execute: { [weak self] in
+            guard let self = self else { return }
+            self.delayRunner.run {
+                self.handleIndicator(.hide)
+                self.collectionView.isHidden = false
+            }
+        }
+        )
     }
     
     private func fetchFilm() {

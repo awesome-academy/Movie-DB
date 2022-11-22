@@ -53,4 +53,8 @@ struct Network {
     func getSearchURL() -> String {
         return "\(baseUrl)search/movie"
     }
+    
+    func getTrendingListFilmURL() -> String {
+        return "\(baseUrl)trending/movie/day"
+    }
 }

@@ -31,7 +31,7 @@ final class SearchViewController: UIViewController {
         configView()
         registerInit()
         collectionView.collectionViewLayout = createLayout()
-        initListGenre()
+        loadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,7 +43,6 @@ final class SearchViewController: UIViewController {
     private func configView() {
         searchView.clipsToBounds = true
         searchView.layer.cornerRadius = 10
-        configActivityIndicator()
         oldIndexPathItemSelected = IndexPath(row: 0, section: 0)
     }
     
@@ -89,6 +88,26 @@ final class SearchViewController: UIViewController {
         }
     }
     
+    private func loadData() {
+        handleIndicator(.show)
+        collectionView.isHidden = true
+
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        self.initListGenre()
+        dispatchGroup.leave()
+        
+        dispatchGroup.notify(queue: .main, execute: { [weak self] in
+            guard let self = self else { return }
+            self.delayRunner.run {
+                self.handleIndicator(.hide)
+                self.collectionView.isHidden = false
+            }
+        }
+        )
+    }
+    
     private func initListGenre() {
         let firstGenre = String("All")
         genresName.append(firstGenre)
@@ -132,7 +151,7 @@ final class SearchViewController: UIViewController {
                 }
             }
             DispatchQueue.main.async {
-                self.handleIndicator(type: IndicatorType.hide)
+                self.handleIndicator(.hide)
             }
         }
     }
@@ -234,7 +253,7 @@ extension SearchViewController: UICollectionViewDelegate {
             searchTextField.resignFirstResponder()
             delayRunner.run {
                 DispatchQueue.main.async {
-                    self.handleIndicator(type: IndicatorType.show)
+                    self.handleIndicator(.show)
                     self.loadFilmsByQuery(url: self.network.getFilmsByGenreURL(),
                                           queryKey: "with_genres",
                                           queryValue: indexPath.row == 0
@@ -277,7 +296,7 @@ extension SearchViewController: UITextFieldDelegate {
         delayRunner.run {
             DispatchQueue.main.async {
                 self.reloadFirstItem()
-                self.handleIndicator(type: IndicatorType.show)
+                self.handleIndicator(.show)
                 if newText.isEmpty {
                     self.initListFilm()
                 } else {

@@ -20,6 +20,8 @@ final class DomainInfoFilm: Codable {
     var voteAverage: Double?
     var genre: [Int]?
     var genres: [String] = []
+    var overview: String?
+    var releaseDate: String?
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -28,6 +30,8 @@ final class DomainInfoFilm: Codable {
         case isAdult = "adult"
         case voteAverage = "vote_average"
         case genre = "genre_ids"
+        case overview
+        case releaseDate = "release_date"
     }
     
     init(item: NSManagedObject) {

@@ -2,15 +2,17 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComingSoonViewController" customModule="MovieDB" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrendingViewController" customModule="MovieDB" customModuleProvider="target">
             <connections>
                 <outlet property="appBarUIView" destination="9x0-hG-aEz" id="INC-C9-lFE"/>
+                <outlet property="collectionView" destination="SS0-gy-Myw" id="mce-dT-MHu"/>
                 <outlet property="view" destination="sbA-gi-26i" id="2ti-WV-r3P"/>
             </connections>
         </placeholder>
@@ -20,17 +22,31 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9x0-hG-aEz" customClass="AppBarUIView" customModule="MovieDB" customModuleProvider="target">
-                    <rect key="frame" x="16" y="63" width="358" height="50"/>
+                    <rect key="frame" x="16" y="16" width="358" height="50"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="TFc-ma-0Cx"/>
                     </constraints>
                 </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="SS0-gy-Myw">
+                    <rect key="frame" x="16" y="82" width="358" height="762"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ISt-HR-OwD">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fTQ-Ql-Ha7"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="SS0-gy-Myw" firstAttribute="top" secondItem="9x0-hG-aEz" secondAttribute="bottom" constant="16" id="6ry-NZ-gkB"/>
                 <constraint firstItem="9x0-hG-aEz" firstAttribute="leading" secondItem="fTQ-Ql-Ha7" secondAttribute="leading" constant="16" id="LSx-Wz-KQJ"/>
+                <constraint firstItem="SS0-gy-Myw" firstAttribute="leading" secondItem="fTQ-Ql-Ha7" secondAttribute="leading" constant="16" id="P8H-Y3-ceb"/>
+                <constraint firstAttribute="bottom" secondItem="SS0-gy-Myw" secondAttribute="bottom" id="Rwa-Ub-53b"/>
+                <constraint firstItem="fTQ-Ql-Ha7" firstAttribute="trailing" secondItem="SS0-gy-Myw" secondAttribute="trailing" constant="16" id="obV-sy-oP3"/>
                 <constraint firstItem="9x0-hG-aEz" firstAttribute="top" secondItem="fTQ-Ql-Ha7" secondAttribute="top" constant="16" id="qr2-sp-6lf"/>
                 <constraint firstItem="fTQ-Ql-Ha7" firstAttribute="trailing" secondItem="9x0-hG-aEz" secondAttribute="trailing" constant="16" id="x38-6j-RMf"/>
             </constraints>

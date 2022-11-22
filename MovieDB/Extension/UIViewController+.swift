@@ -19,37 +19,38 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func handleIndicator(type: IndicatorType) {
+    func handleIndicator(_ type: IndicatorType) {
+        type == .show ? UIViewController.activityIndicator.startAnimating() :
+        UIViewController.activityIndicator.stopAnimating()
+        configActivityIndicator(type)
+        view.isUserInteractionEnabled = type == .hide
+     }
+    
+    func configActivityIndicator(_ type: IndicatorType) {
         switch type {
         case .show:
-            UIViewController.activityIndicator.startAnimating()
-            view.isUserInteractionEnabled = false
+            view.addSubview(UIViewController.activityIndicator)
+            UIViewController.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+            UIViewController.activityIndicator.hidesWhenStopped = true
+            UIViewController.activityIndicator.color = UIColor.white
+            let horizontalConstraint = NSLayoutConstraint(item: UIViewController.activityIndicator,
+                                                          attribute: .centerX,
+                                                          relatedBy: .equal,
+                                                          toItem: view,
+                                                          attribute: .centerX,
+                                                          multiplier: 1,
+                                                          constant: 0)
+            view.addConstraint(horizontalConstraint)
+            let verticalConstraint = NSLayoutConstraint(item: UIViewController.activityIndicator,
+                                                        attribute: .centerY,
+                                                        relatedBy: .equal,
+                                                        toItem: view,
+                                                        attribute: .centerY,
+                                                        multiplier: 1,
+                                                        constant: 0)
+            view.addConstraint(verticalConstraint)
         case .hide:
-            UIViewController.activityIndicator.stopAnimating()
-            view.isUserInteractionEnabled = true
+            UIViewController.activityIndicator.removeFromSuperview()
         }
-    }
-    
-    func configActivityIndicator() {
-        view.addSubview(UIViewController.activityIndicator)
-        UIViewController.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        UIViewController.activityIndicator.hidesWhenStopped = true
-        UIViewController.activityIndicator.color = UIColor.white
-        let horizontalConstraint = NSLayoutConstraint(item: UIViewController.activityIndicator,
-                                                      attribute: .centerX,
-                                                      relatedBy: .equal,
-                                                      toItem: view,
-                                                      attribute: .centerX,
-                                                      multiplier: 1,
-                                                      constant: 0)
-        view.addConstraint(horizontalConstraint)
-        let verticalConstraint = NSLayoutConstraint(item: UIViewController.activityIndicator,
-                                                    attribute: .centerY,
-                                                    relatedBy: .equal,
-                                                    toItem: view,
-                                                    attribute: .centerY,
-                                                    multiplier: 1,
-                                                    constant: 0)
-        view.addConstraint(verticalConstraint)
     }
 }
