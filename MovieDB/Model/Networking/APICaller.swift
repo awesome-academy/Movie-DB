@@ -12,7 +12,6 @@ final class APICaller {
     static let shared = APICaller()
     private let network = Network.shared
     private let session: URLSession
-    private let imageCache = NSCache<NSString, AnyObject>()
     
     private var apiKey: String {
         get {
@@ -123,10 +122,6 @@ final class APICaller {
     }
     
     func getImage(imageURL: String, completion: @escaping(Result<Data, Error>) -> Void) {
-        if let cachedImage = imageCache.object(forKey: imageURL as NSString) as? Data {
-            completion(.success(cachedImage))
-            return
-        }
         let urlString = network.loadImageURL() + imageURL
         guard let url = URL(string: urlString) else {
             completion(.failure(RequestError.badData))
@@ -155,7 +150,6 @@ final class APICaller {
             
             do {
                 let data = try Data(contentsOf: localUrl)
-                self.imageCache.setObject(data as AnyObject, forKey: imageURL as NSString)
                 completion(.success(data))
             } catch let error {
                 completion(.failure(error))
@@ -164,3 +158,4 @@ final class APICaller {
         task.resume()
     }
 }
+

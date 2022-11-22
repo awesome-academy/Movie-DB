@@ -34,7 +34,7 @@ final class FavoriteCollectionViewCell: UICollectionViewCell {
         guard let urlString = film.posterImageURL else {
             return
         }
-        posterFilmImageView.setImage(url: urlString)
+        posterFilmImageView.loadImageUsingUrlString(urlString: urlString)
     }
 
     private func configView() {

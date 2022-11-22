@@ -106,6 +106,7 @@ final class HomeViewController: UIViewController {
                 listUpcomingFilm.convertGenresToString(genres: self.genres)
                 self.filmSections[0].films = listUpcomingFilm
                 self.filmSections[0].titleSection = FilterTitle.upcoming.rawValue
+                self.filmSections[0].categorySection = CategoryPath.upcoming
                 self.collectionView.reloadData()
             }
         }
@@ -116,6 +117,7 @@ final class HomeViewController: UIViewController {
                 listTopRatedFilm.convertGenresToString(genres: self.genres)
                 self.filmSections[1].films = listTopRatedFilm
                 self.filmSections[1].titleSection = FilterTitle.topRated.rawValue
+                self.filmSections[1].categorySection = CategoryPath.topRated
                 self.collectionView.reloadData()
             }
         }
@@ -126,6 +128,7 @@ final class HomeViewController: UIViewController {
                 listNowPlayingFilm.convertGenresToString(genres: self.genres)
                 self.filmSections[2].films = listNowPlayingFilm
                 self.filmSections[2].titleSection = FilterTitle.nowPlaying.rawValue
+                self.filmSections[2].categorySection = CategoryPath.nowPlaying
                 self.collectionView.reloadData()
             }
         }
@@ -136,6 +139,7 @@ final class HomeViewController: UIViewController {
                 listPopularFilm.convertGenresToString(genres: self.genres)
                 self.filmSections[3].films = listPopularFilm
                 self.filmSections[3].titleSection = FilterTitle.popular.rawValue
+                self.filmSections[3].categorySection = CategoryPath.popular
                 self.collectionView.reloadData()
             }
         }
@@ -260,6 +264,18 @@ final class HomeViewController: UIViewController {
             }
         }
     }
+    
+    private func handleViewAllListFim(category: CategoryPath, indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: ListFilmViewController.identifier, bundle: nil)
+        guard let listFilmViewController = storyboard.instantiateViewController(
+            withIdentifier: ListFilmViewController.identifier) as? ListFilmViewController else {
+            return
+        }
+        let filmSection = filmSections[indexPath.section]
+        listFilmViewController.hidesBottomBarWhenPushed = true
+        listFilmViewController.bindData(filmSection: filmSection, category: category)
+        self.navigationController?.pushViewController(listFilmViewController, animated: true)
+    }
 }
 
 extension HomeViewController: UICollectionViewDataSource {
@@ -272,7 +288,12 @@ extension HomeViewController: UICollectionViewDataSource {
             for: indexPath) as? HeaderCollectionReusableView else {
             return UICollectionReusableView()
         }
-        headerCell.bindData(title: filmSections[indexPath.section].titleSection, isShowViewAll: true)
+        let filmSection = filmSections[indexPath.section]
+        headerCell.bindData(title: filmSection.titleSection, isShowViewAll: true, category: filmSection.categorySection)
+        headerCell.viewAllListFilm { [weak self] categoryPath in
+            guard let self = self else { return }
+            self.handleViewAllListFim(category: categoryPath, indexPath: indexPath)
+        }
         return headerCell
     }
 
