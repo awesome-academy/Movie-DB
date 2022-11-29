@@ -9,7 +9,7 @@ import UIKit
 
 final class ListFilmViewController: UIViewController {
 
-    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet private weak var categoryTitleLabel: UILabel!
     
     private var filmSection = FilmSection()
@@ -54,7 +54,7 @@ final class ListFilmViewController: UIViewController {
     }
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { (sectionNumber, _) -> NSCollectionLayoutSection? in
+        return UICollectionViewCompositionalLayout { (_, _) -> NSCollectionLayoutSection? in
             let item = CompositionalLayout.createItem(width: .fractionalWidth(0.5),
                                                       height: .fractionalHeight(1),
                                                       spacingTop: 16,
@@ -79,6 +79,10 @@ final class ListFilmViewController: UIViewController {
         self.initListGenre()
         dispatchGroup.leave()
         
+        dispatchGroup.enter()
+        self.initListFilm()
+        dispatchGroup.leave()
+        
         dispatchGroup.notify(queue: .main, execute: { [weak self] in
             guard let self = self else { return }
             self.delayRunner.run {
@@ -89,7 +93,7 @@ final class ListFilmViewController: UIViewController {
         )
     }
     
-    private func initListGenre() {
+    func initListGenre() {
         let url = Network.shared.getGenresURL()
         filmRepository.getListGenre(urlString: url) { [weak self] result in
             guard let self = self else { return }
@@ -104,7 +108,7 @@ final class ListFilmViewController: UIViewController {
         }
     }
     
-    private func initListFilm() {
+    func initListFilm() {
         guard let category = category else {
             return
         }
@@ -118,7 +122,7 @@ final class ListFilmViewController: UIViewController {
         }
     }
     
-    private func getListFilm(path: CategoryPath, callback: @escaping(([DomainInfoFilm]) -> Void)) {
+    func getListFilm(path: CategoryPath, callback: @escaping(([DomainInfoFilm]) -> Void)) {
         let url = Network.shared.getCategoryListURL(path: path)
         filmRepository.getAllFilm(urlString: url) { [weak self] result in
             guard let self = self else { return }
@@ -135,7 +139,7 @@ final class ListFilmViewController: UIViewController {
         }
     }
     
-    private func getListFavoriteFilm() {
+    func getListFavoriteFilm() {
         CoreDataManager.shared.getFavoriteFilmList { [weak self] items, error in
             guard let self = self else { return }
             guard error == nil else {
@@ -149,7 +153,7 @@ final class ListFilmViewController: UIViewController {
         }
     }
     
-    private func handleFavoriteAction(isFavorited: Bool, film: DomainInfoFilm, indexPath: IndexPath) {
+    func handleFavoriteAction(isFavorited: Bool, film: DomainInfoFilm, indexPath: IndexPath) {
         guard let filmId = film.id else {
             return
         }
@@ -184,7 +188,7 @@ final class ListFilmViewController: UIViewController {
         }
     }
     
-    @IBAction private func tapBackAction(_ sender: Any) {
+    @IBAction func tapBackAction(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
 }

@@ -97,7 +97,7 @@ final class HomeViewController: UIViewController {
         }
     }
 
-    private func initListFilm() {
+    func initListFilm() {
         filmSections = Array(repeating: FilmSection(), count: 4)
         getListFilm(path: CategoryPath.upcoming) { [weak self] listUpcomingFilm in
             guard let self = self else { return }
@@ -145,7 +145,7 @@ final class HomeViewController: UIViewController {
         }
     }
 
-    private func getListFilm(path: CategoryPath, callback: @escaping(([DomainInfoFilm]) -> Void)) {
+    func getListFilm(path: CategoryPath, callback: @escaping(([DomainInfoFilm]) -> Void)) {
         let url = network.getCategoryListURL(path: path)
         filmRepository.getAllFilm(urlString: url) { [weak self] result in
             guard let self = self else { return }
@@ -230,7 +230,7 @@ final class HomeViewController: UIViewController {
         }
     }
     
-    private func handleFavoriteAction(isFavorited: Bool, film: DomainInfoFilm) {
+    func handleFavoriteAction(isFavorited: Bool, film: DomainInfoFilm) {
         guard let filmId = film.id else {
             return
         }
@@ -265,7 +265,7 @@ final class HomeViewController: UIViewController {
         }
     }
     
-    private func handleViewAllListFim(category: CategoryPath, indexPath: IndexPath) {
+    func handleViewAllListFim(category: CategoryPath, indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: ListFilmViewController.identifier, bundle: nil)
         guard let listFilmViewController = storyboard.instantiateViewController(
             withIdentifier: ListFilmViewController.identifier) as? ListFilmViewController else {

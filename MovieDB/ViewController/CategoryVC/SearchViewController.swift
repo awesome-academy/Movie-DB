@@ -10,7 +10,7 @@ import UIKit
 final class SearchViewController: UIViewController {
     
     @IBOutlet private weak var appBarView: AppBarUIView!
-    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet private weak var categoryCollectionView: UICollectionView!
     @IBOutlet private weak var searchView: UIView!
     @IBOutlet private weak var searchTextField: UITextField!
@@ -108,7 +108,7 @@ final class SearchViewController: UIViewController {
         )
     }
     
-    private func initListGenre() {
+    func initListGenre() {
         let firstGenre = String("All")
         genresName.append(firstGenre)
         let url = network.getGenresURL()
@@ -128,11 +128,11 @@ final class SearchViewController: UIViewController {
         }
     }
     
-    private func initListFilm() {
+    func initListFilm() {
         loadFilmsByQuery(url: network.getFilmsByGenreURL(), queryKey: "with_genres", queryValue: "")
     }
     
-    private func loadFilmsByQuery(url: String, queryKey: String, queryValue: String) {
+    func loadFilmsByQuery(url: String, queryKey: String, queryValue: String) {
         filmRepository.getFilmsByQuery(urlString: url,
                                        queryKey: queryKey,
                                        queryValue: queryValue) { [weak self] result in
@@ -170,7 +170,7 @@ final class SearchViewController: UIViewController {
         }
     }
     
-    private func handleFavoriteAction(isFavorited: Bool, film: DomainInfoFilm, indexPath: IndexPath) {
+    func handleFavoriteAction(isFavorited: Bool, film: DomainInfoFilm, indexPath: IndexPath) {
         guard let filmId = film.id else {
             return
         }

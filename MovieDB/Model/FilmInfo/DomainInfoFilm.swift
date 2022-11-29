@@ -34,6 +34,14 @@ final class DomainInfoFilm: Codable {
         case releaseDate = "release_date"
     }
     
+    init(id: Int, title: String, posterImageURL: String?, genresString: String?) {
+        self.id = id
+        self.title = title
+        self.posterImageURL = posterImageURL
+        let genreArray = genresString?.components(separatedBy: " • ")
+        self.genres = genreArray ?? []
+    }
+    
     init(item: NSManagedObject) {
         self.id = item.value(forKey: "id") as? Int
         self.title = item.value(forKey: "nameFilm") as? String

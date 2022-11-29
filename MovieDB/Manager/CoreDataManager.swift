@@ -89,6 +89,23 @@ struct CoreDataManager {
         }
     }
     
+    func deleteAllFilmFromCoreData(completion: @escaping (Error?) -> Void) {
+        let managedContext = persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FilmEntity")
+        fetchRequest.includesPropertyValues = false
+        do {
+            let items = try managedContext.fetch(fetchRequest)
+            for item in items {
+                managedContext.delete(item)
+            }
+            try managedContext.save()
+            completion(nil)
+        } catch let error as NSError {
+            completion(error)
+            return
+        }
+    }
+    
     func getFavoriteFilmList(completion: @escaping ([NSManagedObject], Error?) -> Void) {
         let managedContext = persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FilmEntity")

@@ -42,7 +42,7 @@ final class FavoriteCollectionViewCell: UICollectionViewCell {
         deleteButtonView.makeCornerRadius(10)
     }
     
-    @IBAction private func deleteTapAction(_ sender: Any) {
+    @IBAction func deleteTapAction(_ sender: Any) {
         guard let id = filmId else {
             return
         }
