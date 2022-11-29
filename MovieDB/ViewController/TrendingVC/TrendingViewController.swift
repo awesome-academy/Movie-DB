@@ -10,7 +10,7 @@ import UIKit
 final class TrendingViewController: UIViewController {
 
     @IBOutlet private weak var appBarUIView: AppBarUIView!
-    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     private var films = [DomainInfoFilm]()
     private var genres = [Genre]()
@@ -75,7 +75,7 @@ final class TrendingViewController: UIViewController {
         })
     }
     
-    private func initListGenre() {
+    func initListGenre() {
         let url = Network.shared.getGenresURL()
         filmRepository.getListGenre(urlString: url) { [weak self] result in
             guard let self = self else { return }
@@ -91,7 +91,7 @@ final class TrendingViewController: UIViewController {
         }
     }
     
-    private func initListFilm() {
+    func initListFilm() {
         let url = Network.shared.getTrendingListFilmURL()
         filmRepository.getAllFilm(urlString: url) { [weak self] result in
             guard let self = self else { return }
@@ -126,7 +126,7 @@ final class TrendingViewController: UIViewController {
         }
     }
     
-    private func handleFavoriteAction(isFavorited: Bool, film: DomainInfoFilm, indexPath: IndexPath) {
+    func handleFavoriteAction(isFavorited: Bool, film: DomainInfoFilm, indexPath: IndexPath) {
         guard let filmId = film.id else {
             return
         }

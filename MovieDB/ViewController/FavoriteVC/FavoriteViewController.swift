@@ -11,7 +11,7 @@ import CoreData
 final class FavoriteViewController: UIViewController {
 
     @IBOutlet private weak var appBarUIView: AppBarUIView!
-    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     private var films = [NSManagedObject]()
     private var genres = [Genre]()
@@ -21,6 +21,7 @@ final class FavoriteViewController: UIViewController {
     private var oldIndexPathItemSelected: IndexPath?
     private let delayRunner = DelayedRunner.initWithDuration(seconds: 0.5)
     private let coreDataManager = CoreDataManager.shared
+    static let identifier = "FavoriteViewController"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +84,7 @@ final class FavoriteViewController: UIViewController {
         )
     }
     
-    private func fetchFilm() {
+    func fetchFilm() {
         coreDataManager.getFavoriteFilmList { [weak self] items, error in
             guard let self = self else { return }
             guard error == nil else {
@@ -92,6 +93,20 @@ final class FavoriteViewController: UIViewController {
             }
             self.films = items
             self.collectionView.reloadData()
+        }
+    }
+    
+    func handleDeleteFavortieFilm(filmId: Int) {
+        self.coreDataManager.deleteFilmFromCoreData(filmId: filmId) { error in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.showAlert(title: "ERROR", messageError: error.localizedDescription)
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                self.fetchFilm()
+            }
         }
     }
 }
@@ -112,17 +127,7 @@ extension FavoriteViewController: UICollectionViewDataSource {
         cell.bindData(film: filmInfo)
         cell.deleteFavorite { [weak self] filmId in
             guard let self = self else { return }
-            self.coreDataManager.deleteFilmFromCoreData(filmId: filmId) { error in
-                if let error = error {
-                    DispatchQueue.main.async {
-                        self.showAlert(title: "ERROR", messageError: error.localizedDescription)
-                    }
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.fetchFilm()
-                }
-            }
+            self.handleDeleteFavortieFilm(filmId: filmId)
         }
         return cell
     }

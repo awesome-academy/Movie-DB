@@ -14,16 +14,16 @@ enum DetailScreenConstants: Double {
 
 final class DetailViewController: UIViewController {
     
-    @IBOutlet private weak var favoriteImageView: UIImageView!
-    @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var backButtonView: UIView!
-    @IBOutlet private weak var favoriteButtonView: UIView!
-    @IBOutlet private weak var playerVideo: WKYTPlayerView!
+    @IBOutlet weak var favoriteImageView: UIImageView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var backButtonView: UIView!
+    @IBOutlet weak var favoriteButtonView: UIView!
+    @IBOutlet weak var playerVideo: WKYTPlayerView!
     
     private let headerId = "headerId"
-    private var filmId: Int?
+    var filmId: Int?
     private var film: DetailInfoFilm?
-    private var genres = [Genre]()
+    var genres = [Genre]()
     private var similarFilms = [DomainInfoFilm]()
     private var actors = [Actor]()
     private let filmRepository = FilmRepository()
@@ -96,7 +96,7 @@ final class DetailViewController: UIViewController {
         self.isFavorited = isFavorited
     }
     
-    private func loadData() {
+    func loadData() {
         handleIndicator(.show)
         collectionView.isHidden = true
         favoriteButtonView.isHidden = true
@@ -114,14 +114,10 @@ final class DetailViewController: UIViewController {
                 self.collectionView.isHidden = false
                 self.favoriteButtonView.isHidden = false
             }
-        }
-        )
+        })
     }
     
-    private func initListActor() {
-        guard let filmId = filmId else {
-            return
-        }
+    func initListActor(filmId: Int) {
         let url = network.getActorListOfFilmURL(id: filmId)
         filmRepository.getListActorOfFilm(urlString: url) { [weak self] result in
             guard let self = self else { return }
@@ -132,8 +128,8 @@ final class DetailViewController: UIViewController {
                     if self.collectionView.numberOfSections >= 1 {
                         self.collectionView.reloadSections(IndexSet(integer: 0))
                     }
+                    self.initListFilmSimilar(filmId: filmId)
                 }
-                self.initListFilmSimilar()
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.showAlert(title: "ERROR", messageError: error.localizedDescription)
@@ -142,10 +138,7 @@ final class DetailViewController: UIViewController {
         }
     }
     
-    private func initListFilmSimilar() {
-        guard let filmId = filmId else {
-            return
-        }
+    func initListFilmSimilar(filmId: Int) {
         let url = network.getSimilarFilmsURL(id: filmId)
         filmRepository.getAllFilm(urlString: url) { [weak self] result in
             guard let self = self else { return }
@@ -167,14 +160,17 @@ final class DetailViewController: UIViewController {
         }
     }
     
-    private func initListGenre() {
+    func initListGenre() {
         let url = network.getGenresURL()
         filmRepository.getListGenre(urlString: url) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):
                 self.genres = data ?? []
-                self.initFilmData()
+                guard let filmId = self.filmId else {
+                    return
+                }
+                self.initFilmData(filmId: filmId)
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.showAlert(title: "ERROR", messageError: error.localizedDescription)
@@ -183,10 +179,7 @@ final class DetailViewController: UIViewController {
         }
     }
     
-    private func initFilmData() {
-        guard let filmId = filmId else {
-            return
-        }
+    func initFilmData(filmId: Int) {
         let url = network.getDetailFilmURL(id: filmId)
         filmRepository.getFilmDetail(urlString: url) { [weak self] result in
             guard let self = self else { return }
@@ -195,7 +188,10 @@ final class DetailViewController: UIViewController {
                 guard let data = data else { return }
                 DispatchQueue.main.async {
                     self.film = data
-                    self.initTrailerFilm()
+                    guard let filmId = self.filmId else {
+                        return
+                    }
+                    self.initTrailerFilm(filmId: filmId)
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -205,10 +201,7 @@ final class DetailViewController: UIViewController {
         }
     }
     
-    private func initTrailerFilm() {
-        guard let filmId = filmId else {
-            return
-        }
+    func initTrailerFilm(filmId: Int) {
         let url = network.getVideoURL(id: filmId)
         filmRepository.getVideo(urlString: url) { [weak self] result in
             guard let self = self else { return }
@@ -220,7 +213,7 @@ final class DetailViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.videoKey = videoKey
                     self.playerVideo.load(withVideoId: videoKey)
-                    self.initListActor()
+                    self.initListActor(filmId: filmId)
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -250,7 +243,7 @@ final class DetailViewController: UIViewController {
         }
     }
     
-    private func createCompositionLayout(sectionNumber: Int) -> NSCollectionLayoutSection {
+    func createCompositionLayout(sectionNumber: Int) -> NSCollectionLayoutSection {
         let item = CompositionalLayout.createItem(width: .fractionalWidth(1),
                                                   height: .fractionalHeight(1),
                                                   spacingLeft: 16)
@@ -291,7 +284,37 @@ final class DetailViewController: UIViewController {
         setImageForFavoriteButton()
     }
     
-    @IBAction private func backAction(_ sender: Any) {
+    func handleDeleteFromFavoriteList(filmId: Int) {
+        coreData.deleteFilmFromCoreData(filmId: filmId) { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.showAlert(title: "ERROR", messageError: error.localizedDescription)
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                self.changeImageForFavoriteButton()
+            }
+        }
+    }
+    
+    func handleAddtoFavoriteList(film: DetailInfoFilm) {
+        coreData.addFilmToCoreDataByDetailFilm(filmInfo: film) { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.showAlert(title: "ERROR", messageError: error.localizedDescription)
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                self.changeImageForFavoriteButton()
+            }
+        }
+    }
+    
+    @IBAction func backAction(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     
@@ -300,33 +323,13 @@ final class DetailViewController: UIViewController {
             guard let filmId = filmId else {
                 return
             }
-            coreData.deleteFilmFromCoreData(filmId: filmId) { [weak self] error in
-                guard let self = self else { return }
-                if let error = error {
-                    DispatchQueue.main.async {
-                        self.showAlert(title: "ERROR", messageError: error.localizedDescription)
-                    }
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.changeImageForFavoriteButton()
-                }
-            }
+            handleDeleteFromFavoriteList(filmId: filmId)
         } else {
-            coreData.addFilmToCoreDataByDetailFilm(filmInfo: film) { [weak self] error in
-                guard let self = self else { return }
-                if let error = error {
-                    DispatchQueue.main.async {
-                        self.showAlert(title: "ERROR", messageError: error.localizedDescription)
-                    }
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.changeImageForFavoriteButton()
-                }
+            guard let film = film else {
+                return
             }
+            handleAddtoFavoriteList(film: film)
         }
-        
     }
 }
 

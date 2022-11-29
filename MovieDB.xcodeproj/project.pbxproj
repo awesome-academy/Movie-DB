@@ -67,8 +67,12 @@
 		5DA5B76E291B9F3D00AB2345 /* FilmSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B76D291B9F3D00AB2345 /* FilmSection.swift */; };
 		5DA5B770291BA7BD00AB2345 /* GenreFilm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B76F291BA7BD00AB2345 /* GenreFilm.swift */; };
 		5DA5B772291BACC500AB2345 /* FilterTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA5B771291BACC500AB2345 /* FilterTitle.swift */; };
+		5DAD6656293067E700276793 /* HomeViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD6655293067E700276793 /* HomeViewControllerTest.swift */; };
+		5DAD6659293074AE00276793 /* YoutubePlayer-in-WKWebView in Frameworks */ = {isa = PBXBuildFile; productRef = 5DAD6658293074AE00276793 /* YoutubePlayer-in-WKWebView */; };
+		5DAD665F2930A61B00276793 /* SearchViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD665E2930A61B00276793 /* SearchViewControllerTest.swift */; };
 		5DBC214C2921E05A00CC1931 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC214B2921E05A00CC1931 /* UIView+.swift */; };
 		5DBC21502921EFB100CC1931 /* DelayerRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC214F2921EFB100CC1931 /* DelayerRunner.swift */; };
+		5DD7113629348AB50088F706 /* ListFilmViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD7113529348AB50088F706 /* ListFilmViewControllerTest.swift */; };
 		5DE6CA452922460B007C93B7 /* IndicatorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE6CA442922460B007C93B7 /* IndicatorEnum.swift */; };
 		5DE6CA48292249A9007C93B7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE6CA46292249A9007C93B7 /* DetailViewController.swift */; };
 		5DE6CA4B292324F3007C93B7 /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DE6CA4A292324F3007C93B7 /* DetailViewController.storyboard */; };
@@ -76,7 +80,20 @@
 		5DF4D9FD292CADBF00E438A5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF4D9FC292CADBF00E438A5 /* Utils.swift */; };
 		5DF4DA00292CAF6800E438A5 /* ListFilmViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DF4D9FF292CAF6800E438A5 /* ListFilmViewController.storyboard */; };
 		5DF4DA02292CB03E00E438A5 /* ListFilmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF4DA01292CB03E00E438A5 /* ListFilmViewController.swift */; };
+		5DF857FB2930AA0A00AF7B9B /* DetailViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF857FA2930AA0A00AF7B9B /* DetailViewControllerTest.swift */; };
+		5DF857FD2930AADC00AF7B9B /* TrendingViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF857FC2930AADC00AF7B9B /* TrendingViewControllerTest.swift */; };
+		5DF857FF2930AAEE00AF7B9B /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF857FE2930AAEE00AF7B9B /* FavoriteViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5DAD6650293065E600276793 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5D2C44DD2913634E009157C6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5D2C44E42913634E009157C6;
+			remoteInfo = MovieDB;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5D2C44E52913634E009157C6 /* MovieDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,8 +157,12 @@
 		5DA5B76D291B9F3D00AB2345 /* FilmSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmSection.swift; sourceTree = "<group>"; };
 		5DA5B76F291BA7BD00AB2345 /* GenreFilm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreFilm.swift; sourceTree = "<group>"; };
 		5DA5B771291BACC500AB2345 /* FilterTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTitle.swift; sourceTree = "<group>"; };
+		5DAD664C293065E600276793 /* MovieDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DAD6655293067E700276793 /* HomeViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTest.swift; sourceTree = "<group>"; };
+		5DAD665E2930A61B00276793 /* SearchViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerTest.swift; sourceTree = "<group>"; };
 		5DBC214B2921E05A00CC1931 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		5DBC214F2921EFB100CC1931 /* DelayerRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayerRunner.swift; sourceTree = "<group>"; };
+		5DD7113529348AB50088F706 /* ListFilmViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilmViewControllerTest.swift; sourceTree = "<group>"; };
 		5DE6CA442922460B007C93B7 /* IndicatorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorEnum.swift; sourceTree = "<group>"; };
 		5DE6CA46292249A9007C93B7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5DE6CA4A292324F3007C93B7 /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
@@ -149,6 +170,9 @@
 		5DF4D9FC292CADBF00E438A5 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		5DF4D9FF292CAF6800E438A5 /* ListFilmViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListFilmViewController.storyboard; sourceTree = "<group>"; };
 		5DF4DA01292CB03E00E438A5 /* ListFilmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilmViewController.swift; sourceTree = "<group>"; };
+		5DF857FA2930AA0A00AF7B9B /* DetailViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewControllerTest.swift; sourceTree = "<group>"; };
+		5DF857FC2930AADC00AF7B9B /* TrendingViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewControllerTest.swift; sourceTree = "<group>"; };
+		5DF857FE2930AAEE00AF7B9B /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +184,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5DAD6649293065E600276793 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAD6659293074AE00276793 /* YoutubePlayer-in-WKWebView in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -167,7 +199,9 @@
 			isa = PBXGroup;
 			children = (
 				5D2C44E72913634E009157C6 /* MovieDB */,
+				5DAD664D293065E600276793 /* MovieDBTests */,
 				5D2C44E62913634E009157C6 /* Products */,
+				5DAD6657293074AE00276793 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -175,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				5D2C44E52913634E009157C6 /* MovieDB.app */,
+				5DAD664C293065E600276793 /* MovieDBTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -462,6 +497,26 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		5DAD664D293065E600276793 /* MovieDBTests */ = {
+			isa = PBXGroup;
+			children = (
+				5DF857FA2930AA0A00AF7B9B /* DetailViewControllerTest.swift */,
+				5DAD6655293067E700276793 /* HomeViewControllerTest.swift */,
+				5DAD665E2930A61B00276793 /* SearchViewControllerTest.swift */,
+				5DF857FC2930AADC00AF7B9B /* TrendingViewControllerTest.swift */,
+				5DF857FE2930AAEE00AF7B9B /* FavoriteViewController.swift */,
+				5DD7113529348AB50088F706 /* ListFilmViewControllerTest.swift */,
+			);
+			path = MovieDBTests;
+			sourceTree = "<group>";
+		};
+		5DAD6657293074AE00276793 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5DF4D9FE292CAEF900E438A5 /* ListFilmVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -496,6 +551,27 @@
 			productReference = 5D2C44E52913634E009157C6 /* MovieDB.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5DAD664B293065E600276793 /* MovieDBTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DAD6654293065E600276793 /* Build configuration list for PBXNativeTarget "MovieDBTests" */;
+			buildPhases = (
+				5DAD6648293065E600276793 /* Sources */,
+				5DAD6649293065E600276793 /* Frameworks */,
+				5DAD664A293065E600276793 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5DAD6651293065E600276793 /* PBXTargetDependency */,
+			);
+			name = MovieDBTests;
+			packageProductDependencies = (
+				5DAD6658293074AE00276793 /* YoutubePlayer-in-WKWebView */,
+			);
+			productName = MovieDBTests;
+			productReference = 5DAD664C293065E600276793 /* MovieDBTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -508,6 +584,10 @@
 				TargetAttributes = {
 					5D2C44E42913634E009157C6 = {
 						CreatedOnToolsVersion = 14.0.1;
+					};
+					5DAD664B293065E600276793 = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = 5D2C44E42913634E009157C6;
 					};
 				};
 			};
@@ -528,6 +608,7 @@
 			projectRoot = "";
 			targets = (
 				5D2C44E42913634E009157C6 /* MovieDB */,
+				5DAD664B293065E600276793 /* MovieDBTests */,
 			);
 		};
 /* End PBXProject section */
@@ -557,6 +638,13 @@
 				5DF4DA00292CAF6800E438A5 /* ListFilmViewController.storyboard in Resources */,
 				5DE6CA4B292324F3007C93B7 /* DetailViewController.storyboard in Resources */,
 				5DE6CA4B292324F3007C93B7 /* DetailViewController.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAD664A293065E600276793 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,7 +745,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5DAD6648293065E600276793 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAD6656293067E700276793 /* HomeViewControllerTest.swift in Sources */,
+				5DF857FD2930AADC00AF7B9B /* TrendingViewControllerTest.swift in Sources */,
+				5DF857FF2930AAEE00AF7B9B /* FavoriteViewController.swift in Sources */,
+				5DD7113629348AB50088F706 /* ListFilmViewControllerTest.swift in Sources */,
+				5DF857FB2930AA0A00AF7B9B /* DetailViewControllerTest.swift in Sources */,
+				5DAD665F2930A61B00276793 /* SearchViewControllerTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5DAD6651293065E600276793 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5D2C44E42913634E009157C6 /* MovieDB */;
+			targetProxy = 5DAD6650293065E600276793 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5D2C44F62913634F009157C6 /* LaunchScreen.storyboard */ = {
@@ -851,6 +960,42 @@
 			};
 			name = Release;
 		};
+		5DAD6652293065E600276793 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 295TC7FJW5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sun-asterisk.MovieDBTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieDB.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MovieDB";
+			};
+			name = Debug;
+		};
+		5DAD6653293065E600276793 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 295TC7FJW5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sun-asterisk.MovieDBTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieDB.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MovieDB";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -872,6 +1017,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		5DAD6654293065E600276793 /* Build configuration list for PBXNativeTarget "MovieDBTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DAD6652293065E600276793 /* Debug */,
+				5DAD6653293065E600276793 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -887,6 +1041,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		5D6165A9292B3441007DEB11 /* YoutubePlayer-in-WKWebView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D6165A8292B3441007DEB11 /* XCRemoteSwiftPackageReference "YoutubePlayer-in-WKWebView" */;
+			productName = "YoutubePlayer-in-WKWebView";
+		};
+		5DAD6658293074AE00276793 /* YoutubePlayer-in-WKWebView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5D6165A8292B3441007DEB11 /* XCRemoteSwiftPackageReference "YoutubePlayer-in-WKWebView" */;
 			productName = "YoutubePlayer-in-WKWebView";
